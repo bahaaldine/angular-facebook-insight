@@ -1,0 +1,25 @@
+{
+  "name": "angular-facebook-insight",
+  "version": "0.0.0",
+  "homepage": "https://github.com/bahaaldine/angular-facebook-insight",
+  "authors": [
+    "Bahaaldine AZARMI <bahaaldine@gmail.com>",
+    "Mayssem Bouzazi <mayssem.bouzazi@telecom-sudparis.eu>",
+    "Li Xu <li.xu@telecom-sudparis.eu>"
+  ],
+  "description": "angular component that renders your Facebook page insights",
+  "keywords": [
+    "angular",
+    "facebook",
+    "social",
+    "insight"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
