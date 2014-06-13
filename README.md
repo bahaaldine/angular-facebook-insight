@@ -1,11 +1,11 @@
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
-Angular Facebook Insight
+# Angular Facebook Insight
 
 The angular component which lets you requests your Facebook page
 insight and creates a fancy dashboard !
 
-# Installation
+## Installation
 
 Install the module using [bower]: http://bower.io
 
@@ -37,7 +37,7 @@ Add ngFacebookInsight module to you application
 	...
 ```
 
-# Usage
+## Usage
 
 All you need is to place a ngFacebookInsight with its attribute in your view like the following piece of code:
 ```javascript
@@ -59,4 +59,4 @@ All you need is to place a ngFacebookInsight with its attribute in your view lik
 TODO: document each attribute
 
 
-# Brower compatibility
+## Brower compatibility
