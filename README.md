@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/bahaaldine/angular-facebook-insight.svg?branch=master)](https://travis-ci.org/bahaaldine/angular-facebook-insight)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
 # Angular Facebook Insight
