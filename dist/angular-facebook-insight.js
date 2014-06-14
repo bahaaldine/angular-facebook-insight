@@ -1,12 +1,14 @@
+/*! angular-facebook-insight - v0.6.0 - 2014-06-14
+* Copyright (c) 2014 ; Licensed  */
 'use strict';
 
 var page_id = 0;
 
 angular.module("angular-facebook-insight", ['nvd3ChartDirectives', 'googlechart'])
 
-.service('Facebook', function($q, $rootScope) {
-  getMonitoredPagesId = function(FB, scope, access_token) {         
-      FB.getLoginStatus(function(response) {
+.service('Facebook', function() {
+  var getMonitoredPagesId = function(FB, scope, access_token) {         
+      FB.getLoginStatus(function() {
         FB.api('/me', function(response) {
           resolve(null, response, deferred);
         });
@@ -26,8 +28,8 @@ angular.module("angular-facebook-insight", ['nvd3ChartDirectives', 'googlechart'
   return {
     getUserAndAccount: function(FB, varscope) {
       FB.getLoginStatus(function(response) {
-        if (response.status != 'connected') {
-          FB.login(function(response) {           
+        if (response.status !== 'connected') {
+          FB.login(function() {           
               FB.api('/me', function(response) {
                 varscope.user = response;
                 varscope.user.connected = true;
@@ -38,7 +40,7 @@ angular.module("angular-facebook-insight", ['nvd3ChartDirectives', 'googlechart'
 
           },{scope: 'read_insights,manage_pages'});
         }
-        else if(response.status == 'connected') {
+        else if(response.status === 'connected') {
             FB.api('/me', function(response) {
               varscope.user = response;
               varscope.user.connected = true;
@@ -99,9 +101,9 @@ angular.module("angular-facebook-insight", ['nvd3ChartDirectives', 'googlechart'
     
     var page_fans_by_like_source = [];
 
-    var page_views_time = [];
+    //var page_views_time = [];
 
-    var page_storytellers_by_story_type = [];
+    //var page_storytellers_by_story_type = [];
     var page_positive_feedback_by_type = [];
     var page_story_adds_by_story_type = [];
     var page_storytellers = [];
@@ -121,11 +123,11 @@ angular.module("angular-facebook-insight", ['nvd3ChartDirectives', 'googlechart'
     
     $scope.overview.pageid = page_id;
 
-      FB.api('/'+page_id, function(response){
+      FB.api('/'+page_id, function(){
           var pageArray = [];
           var pageArray1 = [];
-          var pageArray3 = [];
-          var pageArray5 = [];
+          //var pageArray3 = [];
+          //var pageArray5 = [];
 
           FB.api('/'+page_id, function(response) {
             $scope.overview.generalinfodata.push({"name": "Website","info": response.website});  
@@ -139,7 +141,6 @@ angular.module("angular-facebook-insight", ['nvd3ChartDirectives', 'googlechart'
 
 // GEOGRAPHICS : MAP
      FB.api('/'+page_id+'/insights/page_fans_country/lifetime?access_token='+access_token,function (response) {
-              var json = [response.data[0].values[0].value];
               
               var getKeyValueFromJSON = function (response) {
                   var i=1;
@@ -163,7 +164,7 @@ angular.module("angular-facebook-insight", ['nvd3ChartDirectives', 'googlechart'
               for (var j=0; j<Country.length; j++){
                   mapdata[j]=[Country[j],Fans[j]];
               }
-              google.load('visualization', '1', {'packages': ['geochart']})
+              google.load('visualization', '1', {'packages': ['geochart']});
               // MAP
               var drawRegionsMap = function (mapdata) {
                   var data = google.visualization.arrayToDataTable(mapdata);
@@ -180,7 +181,6 @@ angular.module("angular-facebook-insight", ['nvd3ChartDirectives', 'googlechart'
 
 // GEOGRAPHICS : LANGUAGES
           FB.api('/'+page_id+'/insights/page_impressions_by_locale_unique/days_28?access_token='+access_token,function (response) {
-                var json = [response.data[0].values[0].value];
                 
                 var getKeyValueFromJSON = function (response) {
                   var i=0;
@@ -198,7 +198,7 @@ angular.module("angular-facebook-insight", ['nvd3ChartDirectives', 'googlechart'
                 var re = getKeyValueFromJSON(response);
                 
                 var key = re[0];
-                var value_language = re[1];
+                value_language = re[1];
               
                 for (var j=0; j<key.length; j++){
                   var item = {key: key[j], y: value_language[j]};
@@ -220,9 +220,7 @@ angular.module("angular-facebook-insight", ['nvd3ChartDirectives', 'googlechart'
 
 // FANS : DEMOGRAPHICS
  FB.api('/'+page_id+'/insights/page_impressions_by_age_gender_unique/days_28?access_token='+access_token,function (response) {
-           
-                var json = [response.data[0].values[0].value];
-                
+
                 var getKeyValueFromJSON = function (response) {
                   var i=0;
                   var keytest = [];
@@ -239,7 +237,7 @@ angular.module("angular-facebook-insight", ['nvd3ChartDirectives', 'googlechart'
                 var re = getKeyValueFromJSON(response);
                 
                 var key = re[0];
-                var value_gender_age = re[1];
+                value_gender_age = re[1];
                
                 for (var j=0; j<key.length; j++){
                   var item = {key: key[j], y: value_gender_age[j]};
@@ -278,7 +276,7 @@ angular.module("angular-facebook-insight", ['nvd3ChartDirectives', 'googlechart'
 
                 var re = getKeyValueFromJSON(response);
                 var key = re[0];
-                var data_fan_online = re[1];
+                data_fan_online = re[1];
                 var data_fans = [];
 
                 $scope.xFunction = function(){
@@ -307,7 +305,7 @@ angular.module("angular-facebook-insight", ['nvd3ChartDirectives', 'googlechart'
           });
 
 // TODAY'S STATS
-          var fans; var engaged_users;
+          //var fans; var engaged_users;
           FB.api('/'+page_id+'/insights/page_views/day?access_token='+access_token,function (response) {
               $scope.todaystats.todayviewstats = response.data[0].values[0].value;
               $scope.$apply();
@@ -366,7 +364,7 @@ FB.api('/'+page_id+'/insights/page_fans/lifetime?access_token='+access_token,fun
         FB.api('/'+page_id+'/insights/page_engaged_users/days_28?access_token='+access_token,function(response){
             $scope.roi.engagedusers = response.data[0].values[0].value;  
             $scope.roi.engagementrate=((($scope.roi.engagedusers)/($scope.roi.totalfans))*100).toFixed(2);
-            if (typeof($scope.roi.engagementrate) == 'undefined' || $scope.roi.engagementrate == 'NaN'|| $scope.roi.impressionrate == 'Infinity'){
+            if (typeof($scope.roi.engagementrate) === 'undefined' || isNaN($scope.roi.engagementrate) || $scope.roi.impressionrate === 'Infinity'){
               $scope.roi.engagementrate="No Data";
             }
              $scope.$apply();
@@ -378,7 +376,7 @@ FB.api('/'+page_id+'/insights/page_fans/lifetime?access_token='+access_token,fun
                   '/'+page_id+'/insights/page_impressions/days_28?access_token='+access_token,function (response) {
                     $scope.roi.reachmonthcount = response.data[0].values[0].value;
                     $scope.roi.reachrate=((($scope.roi.reachmonthcount)/($scope.roi.totalfans))).toFixed(2);
-                        if (typeof($scope.roi.reachrate) == 'undefined' || $scope.roi.reachrate == 'NaN'|| $scope.roi.impressionrate == 'Infinity'){
+                        if (typeof($scope.roi.reachrate) === 'undefined' || isNaN($scope.roi.reachrate) || $scope.roi.impressionrate === 'Infinity'){
                             $scope.roi.reachrate="No Data";
                         }
                     $scope.$apply();
@@ -389,7 +387,7 @@ FB.api('/'+page_id+'/insights/page_fans/lifetime?access_token='+access_token,fun
                            '/'+page_id+'/insights/page_consumptions/days_28?access_token='+access_token,function (response) {
                             $scope.roi.impressionmonthcount = response.data[0].values[0].value;
                             $scope.roi.impressionrate=((($scope.roi.impressionmonthcount)/($scope.roi.totalfans))*100).toFixed(2);
-                            if (typeof($scope.roi.impressionrate) == 'undefined' || $scope.roi.impressionrate == 'NaN'|| $scope.roi.impressionrate == 'Infinity'){
+                            if (typeof($scope.roi.impressionrate) === 'undefined' || isNaN($scope.roi.impressionrate) || $scope.roi.impressionrate === 'Infinity'){
                               $scope.roi.impressionrate="No Data";
                             }
                             $scope.$apply();
@@ -420,7 +418,7 @@ FB.api('/'+page_id+'/insights/page_fans/lifetime?access_token='+access_token,fun
       page_impressions_organic[2]=response.data[0].values[2].value;      
 
       for (var i=0; i<page_impressions_organic.length; i++){
-        if (page_impressions_organic[i]== null || isNAN(page_impressions_organic) ){
+        if (page_impressions_organic[i]== null || isNaN(page_impressions_organic) ){
           page_impressions_organic =0;
         }
         var end_time = response.data[0].values[i]["end_time"];
@@ -442,7 +440,7 @@ FB.api('/'+page_id+'/insights/page_fans/lifetime?access_token='+access_token,fun
                 page_impressions_paid[2]=response.data[0].values[2].value;
 
                 for (var i=0; i<page_impressions_paid.length; i++){
-                  if (page_impressions_paid[i]== null || isNAN(page_impressions_paid[i]) ){
+                  if (page_impressions_paid[i]== null || isNaN(page_impressions_paid[i]) ){
                     page_impressions_paid =0;
                   }
                   var end_time = response.data[0].values[i]["end_time"];
@@ -465,7 +463,7 @@ FB.api('/'+page_id+'/insights/page_fans/lifetime?access_token='+access_token,fun
                         page_impressions_viral[2]=response.data[0].values[2].value;  
 
                         for (var i=0; i<page_impressions_viral.length; i++){
-                          if (page_impressions_viral[i]== null || isNAN(page_impressions_viral[i]) ){
+                          if (page_impressions_viral[i]== null || isNaN(page_impressions_viral[i]) ){
                             page_impressions_viral =0;
                           }
                           var end_time = response.data[0].values[i]["end_time"];
@@ -486,7 +484,7 @@ FB.api('/'+page_id+'/insights/page_fans/lifetime?access_token='+access_token,fun
                               page_impressions_week[2]=response.data[0].values[2].value;
 
                               for (var i=0; i<page_impressions_week.length; i++){
-                                if (page_impressions_week[i]== null || isNAN(page_impressions_week[i]) ){
+                                if (page_impressions_week[i]== null || isNaN(page_impressions_week[i]) ){
                                   page_impressions_week =0;
                                 }
                                 var end_time = response.data[0].values[i]["end_time"];
@@ -498,7 +496,7 @@ FB.api('/'+page_id+'/insights/page_fans/lifetime?access_token='+access_token,fun
                                 }
                               }  
                               $scope.toolTipContentFunction = function(){
-                                return function(key, x, y, e, graph) {
+                                return function(key, x, y) {
                                   console.log('tooltip content');
                                     return  'Super New Tooltip' +
                                         '<h1>' + key + '</h1>' +
@@ -718,7 +716,7 @@ FB.api(
               var count=response.data[0].values[j];
               page_storytellers[j]=count.value;
               for (var i=0; i<page_storytellers; i++){
-                if (page_storytellers==null || isNAN(page_storytellers) ){
+                if (page_storytellers==null || isNaN(page_storytellers) ){
                   page_storytellers = 0;
                 }
               }
@@ -728,8 +726,8 @@ FB.api(
               page_storytellers_time[j] = xtime;
           }
           var interactionvalues = [];
-          for (var i=0; i<page_storytellers.length; i++){
-            interactionvalues[i] = [page_storytellers_time[i], page_storytellers[i]];
+          for (var m=0; m<page_storytellers.length; m++){
+            interactionvalues[m] = [page_storytellers_time[m], page_storytellers[m]];
           }
 
           $scope.stories.interactiondata =[

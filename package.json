@@ -1,4 +1,6 @@
 {
+  "name": "angular-facebook-insight",
+  "author": "Bahaaldine AZARMI, Mayssam Bouzazi, Li Xu",
   "version": "0.6.0",
   "engines": {
     "node": ">= 0.10.0"

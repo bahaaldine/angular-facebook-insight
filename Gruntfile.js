@@ -1,5 +1,6 @@
 /*global module:false*/
 module.exports = function(grunt) {
+  'use strict';
 
   // Project configuration.
   grunt.initConfig({
@@ -23,11 +24,11 @@ module.exports = function(grunt) {
     },
     bump: {
       options: {
-        files: ['package.json'],
+        files: ['package.json', 'bower.json'],
         updateConfigs: [],
         commit: true,
         commitMessage: 'Release v%VERSION%',
-        commitFiles: ['package.json'],
+        commitFiles: ['package.json', 'bower.json'],
         createTag: true,
         tagName: 'v%VERSION%',
         tagMessage: 'Version %VERSION%',
@@ -59,8 +60,15 @@ module.exports = function(grunt) {
         boss: true,
         eqnull: true,
         browser: true,
+        globalstrict: true,
         globals: {
-          jQuery: true
+          angular: false,
+          FB: false,
+          d3: false,
+          google: false,
+          console: false,
+          resolve: false,
+          deferred: false
         }
       },
       gruntfile: {
