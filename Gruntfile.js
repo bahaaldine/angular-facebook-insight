@@ -1,6 +1,12 @@
-/*global module:false*/
+/*global require, module:false*/
 module.exports = function(grunt) {
   'use strict';
+
+  // Load grunt tasks automatically
+  require('load-grunt-tasks')(grunt);
+
+  // Time how long tasks take. Can help when optimizing build times
+  require('time-grunt')(grunt);
 
   // Project configuration.
   grunt.initConfig({
@@ -62,7 +68,9 @@ module.exports = function(grunt) {
         browser: true,
         globalstrict: true,
         globals: {
+          jQuery: true,
           angular: false,
+          Odometer: false,
           FB: false,
           d3: false,
           google: false,
@@ -90,19 +98,26 @@ module.exports = function(grunt) {
         files: '<%= jshint.lib_test.src %>',
         tasks: ['jshint:lib_test', 'qunit']
       }
+    },
+    cssmin: {
+      minify: {
+        expand: true,
+        cwd: 'lib/',
+        src: ['*.css', '!*.min.css'],
+        dest: 'dist/',
+        ext: '.min.css'
+      }
+    },
+    'gh-pages': {
+      options: {
+        base: 'examples/dist'
+      },
+      src: '**/*'
     }
   });
 
-  // These plugins provide necessary tasks.
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-qunit');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-bump');
-
   // Default task.
-  grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
+  grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'cssmin']);
 
+  grunt.registerTask('pages', ['gh-pages']);
 };
