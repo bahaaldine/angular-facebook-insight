@@ -1,439 +1,382 @@
-<section id="overview" ng-show="overview">
-      <div class="main-inner">
-        <div class="span7"  >
-          <div class="widget">
-            <div class="widget-header"> <i class="icon-bookmark"></i>
-              <h3>General infos</h3>
-            </div>
-              <div  style="height:118px;" class="widget-content"  
-                <u1 ng-repeat="i in overview.generalinfodata">
-                  <p style="font-size:13px; font-weight:bold;">{{i.info}}<p>
-                </u1>
-            </div>
-          </div>
-        </div>
-        <div class="span6" style="width:550px;" >
-          <div class="widget">
-            <div class="widget-header"> <i class="icon-cloud "></i>
-              <h3>Word Cloud</h3>
-            </div>
-            <div class="widget-content">
-<img src="https://graph.facebook.com/{{overview.pageid}}/picture" style="width:400px; height:428px;" />
-            </div>
-          </div>
-        </div> 
- </div>
-</section>
+<div ng-show="user.connected" ng-controller="MainCtrl">
+    <ng-fb-user-info></ng-fb-user-info>
+    <ng-fb-pages></ng-fb-pages>
 
+    <ng-fb-insight 
+        api="overview",
+        page="page.id" 
+        parser="text" 
+        ng-show="page.id"></ng-fb-insight>
 
-<section id="todaystats" ng-show="todaystats">
-        <div class="container">
-          <div class="widget-header"> 
-            <i class="icon-signal"></i>
-            <h3>Today's Stats</h3>
-          </div>
+    <h1 ng-show="page.id">Page and Post Stories and "People talking about this"</h1>
 
-        <div class="widget-content">
-          <div class="big-stats-container" style="position:relative; left:140px; right:140px">
-              <div id="big_stats" >
-              <div class="stat"><i class="icon-thumbs-up-alt"></i> <span class="value">{{todaystats.todaytotalfans}}</span></br><b>Likes</b><p style="font-size:11px;">Total number of people who have liked your Page</p></div>
+     <ng-fb-insight 
+        page="page.id" 
+        parser="dailyLine" 
+        api="page_stories",
+        period="day"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
 
-              <div class="stat"><i class="icon-eye-open"></i> <span class="value">{{todaystats.todayviewstats}}</span></br><b>Views</b><p style="font-size:11px;">Total number of your Page's views for today</p></div>
-                
-              <div class="stat"> <i class="icon-hand-up"></i> <span class="value">{{todaystats.todayclicks}}</span></br><b>Clicks</b><p style="font-size:11px;">number of clicks on any of your content</p></div>
-              </div></br>
-              <br>
-              <br>
-              <div id="big_stats">
-                  <div class="stat"><i class="icon-bullhorn"></i> <span class="value">{{todaystats.talkingaboutstats}}</span></br><b>Talking About</b><p style="font-size:11px;">Number of people who were talking about your Page today</p></div>
-                  <div class="stat"><i class="icon-magnet"></i> <span class="value">{{todaystats.todayengagedusers}}</span></br><b>Engaged Users</b><p style="font-size:11px;">Number of people who engaged with your Page. Engagement includes any click or story created</p></div>
-                  <div class="stat"> <i class="icon-bell"></i> <span class="value">{{todaystats.todayonlinefans}}</span></br><b>Online Fans</b><p style="font-size:11px;">Number of people who liked your Page and who were online today</p></div>
-              </div>
+    <h1 ng-show="page.id">Page Impressions</h1>
 
-          </div>   
+    <ng-fb-insight 
+        page="page.id" 
+        parser="dailyLine" 
+        api="page_impressions_unique",
+        period="day"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
 
-        </div>
-</section>
+    <ng-fb-insight 
+        page="page.id" 
+        parser="dailyLine" 
+        api="page_impressions_paid_unique",
+        period="day"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
 
+    <ng-fb-insight 
+        page="page.id" 
+        parser="dailyLine" 
+        api="page_impressions_organic_unique",
+        period="day"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
 
-<section id="reach" ng-show="reach">
-            <div class="main-inner">           
-                <div class="span5">
-                    <div class="widget-header"> <i class="icon-list"></i>
-                      <h3>Reach Impressions By Type</h3>
-                    </div>
-                    <div class="info-box"  style=" height:455px;"> 
-                        <div class="row-fluid stats-box">
+    <ng-fb-insight 
+        page="page.id" 
+        parser="dailyLine" 
+        api="page_impressions_viral_unique",
+        period="day"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
 
-                            <div class="stats-box-title">Organic Impressions</div>
-                            <div class="stats-box-all-info"><i class="icon-cogs" style="color:#F30;"></i>{{reach.organicdata}}<p style="font-size:10px;">Number of people who visited your Page, or saw one of its posts in news feed or ticker</p></div>
-                      
-                            <div class="stats-box-title">Paid Impressions</div>
-                            <div class="stats-box-all-info"><i class="icon-money" style="color:#3C3"></i>{{reach.paiddata}}<p style="font-size:10px;">Number of impressions of a Sponsored Story or Ad pointing to your Page</p></div>
-                      
-                            <div class="stats-box-title">Viral Impressions</div>
-                            <div class="stats-box-all-info"><i class="icon-comments-alt" style="color:#3366cc;"></i>  {{reach.viraldata}}<p style="font-size:10px;">Number of people who saw your Page or any of its posts from a story shared by a friend</p></div>
-                        </div>
-                      </div>
-                    </div>
+    <h1 ng-show="page.id">Page User Demographics</h1>
 
-          <div class="span8">
-          <div class="widget">
-            <div class="widget-header"> <i class="icon-retweet"></i>
-              <h3>Reach Evolution</h3>
-            </div>
-            <div class="widget-content"  style=" height:420px;">
-            <nvd3-stacked-area-chart
-                data="reach.reachevolutiondata"
-                  id="reach_id"
-                  showXAxis="true"
-                  showYAxis="true"
-                    width="720"
-                  height="400"
-                  showLegend="true"
-                  showControls="true"   
-                  xAxisTickFormat="reach.xAxisTickFormatFunction()"     
-                  useInteractiveGuideline="true"        
-                  interactive="true"
-                  tooltips="true"
-                  labelType="value">
-            </nvd3-stacked-area-chart>    
-           </div>            
-          </div>
-        </div>
-        </div> 
-</section>
+    <ng-fb-insight 
+        page="page.id" 
+        parser="dailyLine" 
+        api="page_fans",
+        period="lifetime"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
 
+    <ng-fb-insight 
+        page="page.id" 
+        parser="geomap" 
+        api="page_fans_locale",
+        period="lifetime"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
 
-<section id="sources" ng-show="sources"> 
-         <div class="container">
-        <div class="span5" style=" width:550px;">
-          <div class="widget">
-            <div class="widget-header"> <i class="icon-thumbs-up"></i>
-              <h3>Like Sources</h3>
-            </div>
-            <div class="widget-content"  style=" height:400px;">
-                  <p style="font-size:10px;">Number of people who liked your Page today, broken down by the most common places where people can like your Page</p>
-                <nvd3-discrete-bar-chart
-                    data="sources.likesources"
-                      id="data_like_sources_id"
-                      showControls="true"   
-                      tooltips="true"
-                      showLegend="true"
-                      showXAxis="true"
-                      showYAxis="true"
-                      interactive="true"
-                      width="580"
-                      height="350"
-                      showValues="true">
-                  </nvd3-discrete-bar-chart>                  
-            </div>
-          </div>
-        </div>         
-        <div class="span5"  style=" width:550px;">
-            <div class="widget-header"> <i class="icon-eye-open"></i>
-              <h3>Views Sources</h3> 
-            </div>
-            <div class="widget-content"  style=" height:400px;">
-                  <p style="font-size:10px;">Number of people who viewed your Page today, broken down by fans types : logged in Users, logged out Users and Page fans</p>
-                <nvd3-discrete-bar-chart
-                    data="sources.viewsources"
-                      id="data_like_view_id"
-                      showControls="true"   
-                      tooltips="true"
-                      showLegend="true"
-                      showXAxis="true"
-                      showYAxis="true"
-                      interactive="true"
-                      width="580"
-                      height="350"
-                      showValues="true">
-                  </nvd3-discrete-bar-chart>             
-            </div>
-        </div> 
-      </div>
-</section>
+    <ng-fb-insight 
+        page="page.id" 
+        parser="map" 
+        api="page_fans_city",
+        period="lifetime"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
 
+    <ng-fb-insight 
+        page="page.id" 
+        parser="geomap" 
+        api="page_fans_country",
+        period="lifetime"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
 
+    <h1 ng-show="page.id">Page User Demographics</h1>
 
-<section id="referrals" ng-show="referrals">
- <div class="container">
-        <div class="span5" style=" width:550px;">
-          <div class="widget">
-            <div class="widget-header"> <i class="icon-signout"></i>
-              <h3>Internal Referrers</h3>
-            </div>
-            <div class="widget-content"  style=" height:400px;">
-                  <p>Internal referrals to your Page</p>              
-            <h1 ng-repeat="referral in referrals.internaldata">
-              <br> 
-              <br>{{referral}}
-            </h1>              
-            </div>
-          </div>
-        </div>         
-        <div class="span5"  style=" width:550px;">
-          <div class="widget">
-            <div class="widget-header"> <i class="icon-signin"></i>
-              <h3>External Referrers</h3>
-            </div>
-            <div class="widget-content"  style=" height:400px;">
-                  <p>External referrals to your Page</p>              
-            <h1 ng-repeat="referral in referrals.externaldata">
-              <br> 
-              <br>{{referral}}
-            </h1>              
-            </div>
-          </div>          
-        </div> 
-      </div>
-</section>
+    <ng-fb-insight 
+        page="page.id" 
+        parser="genderBreakdown" 
+        api="page_fans_gender_age",
+        period="lifetime"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
 
+    <h1 ng-show="page.id">Page Engagement</h1>
 
-<section id="stories" ng-show="stories">
-       <div class="container">
-        <div class="span4" style=" width:360px;">
-          <div class="widget">
-            <div class="widget-header"> <i class="icon-comment"></i>
-              <h3>People talking about it</h3>
-            </div>
-            <div class="widget-content"  style=" height:350px;">
-                  <nvd3-discrete-bar-chart
-                    data="stories.talkingaboutdata"
-                      id="data_talking_id"
-                      showControls="true"   
-                      tooltips="true"
-                      showLegend="true"
-                      showXAxis="true"
-                      showYAxis="true"
-                      interactive="true"
-                      width="380"
-                      height="380"
-                      showValues="true">
-                  </nvd3-discrete-bar-chart>
-            </div>
-          </div>
-        </div>         
-        <div class="span4" style=" width:360px;">
-          <div class="widget">
-            <div class="widget-header"> <i class="icon-sitemap"></i>
-              <h3>People Interaction</h3>
-            </div>
-            <div class="widget-content"  style=" height:350px;">
-                <nvd3-stacked-area-chart
-                    data="stories.interactiondata"
-                      id="data_interaction_id"
-                      showXAxis="true"
-                      showYAxis="true"
-                      width="330"
-                      height="350"
-                      xAxisTickFormat="stories.xAxisTickFormatFunction()"  
-                      useInteractiveGuideline="true"        
-                      interactive="true"
-                      tooltips="true"
-                      labelType="value">
-                  </nvd3-stacked-area-chart>
-            </div>
-          </div>
-        </div>
-        <div class="span4"  style=" width:360px;">
-          <div class="widget">
-            <div class="widget-header"> <i class="icon-plus-sign"></i>
-              <h3>Positive Feedback</h3>
-            </div>
-            <div class="widget-content"  style=" height:350px;">
-                <nvd3-discrete-bar-chart
-                    data="stories.positivefeedbackdata"
-                      id="data_positive_feedback_id"
-                      showXAxis="true"
-                      showYAxis="true"
-                      tooltips="true"                      
-                      width="380"
-                      height="380"
-                      showValues="true"
-                      interactive="true"
-                      useInteractiveGuideline="true">
-                  </nvd3-discrete-bar-chart>
-            </div>
-          </div>
-        </div> 
-      </div>
-</section>
+    <ng-fb-insight 
+        page="page.id" 
+        parser="dailyLine" 
+        api="page_engaged_users",
+        period="week"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
 
+    <ng-fb-insight 
+        page="page.id" 
+        parser="dailyLine" 
+        api="page_consumptions",
+        period="week"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
 
-<section id="geographics" ng-show="geographics">
-          <div class="main-inner">
-              <div class="container">
-                  <div class="row">
-                      <div class="span6">
-                          <div class="widget">
-                              <div class="widget-header">
-                                  <i class="icon-bar-chart"></i>
-                                  <h3>Countries</h3>
-                              </div>
-                                <div class="widget-content" style="width: 538px; height: 410px;">
-                                  <div google-chart="geochart" ng-model="mapdata" id="chart_div"></div>
-                             </div>
-                          </div>
-                      </div>
-                      <div class="span6">
+    <ng-fb-insight 
+        page="page.id" 
+        parser="dailyLine" 
+        api="page_places_checkin_total",
+        period="week"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
 
-                          <div class="widget">
-                              <div class="widget-header">
-                                  <i class="icon-bar-chart"></i>
-                                  <h3>Languages</h3> 
-                              </div>
-                               <div class="widget-content" style="width: 538px; height: 410px;">
-                                <p style="font-size:11px;">Languages spoken by your Page fans </p>
-                                  <nvd3-pie-chart
-                                   data="geographics.languagedata"
-                                   id="language_data_id"
-                                   height="400"
-                                   width="600"                                   
-                                   x="geographics.xFunction()"
-                                   y="geographics.yFunction()"
-                                   donut="true"
-                                   showLegend="true" 
-                                   tooltips="true"  
-                                   labelType="value" > 
-                                  </nvd3-pie-chart>
-                              </div> 
-                      </div>
-                  </div>
-              </div>
-          </div>
-</section>
+    <ng-fb-insight 
+        page="page.id" 
+        parser="dailyLine" 
+        api="page_places_checkin_mobile",
+        period="week"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
 
-<section id="fans" ng-show="fans"> 
-          <div class="main-inner">
-              <div class="container">
-                  <div class="row">
-                      <div class="span6" >
-                          <div class="widget">
-                              <div class="widget-header">
-                                  <i class="icon-bar-chart"></i>
-                                  <h3>Fans'Online Activity</h3> 
-                              </div>
-                                <div class="widget-content" style="width: 538px;height:450px;">
-                                  <p style="font-size:11px;">Number of your Page fans broken down by when they are online </p>
-                <nvd3-discrete-bar-chart
-                    data="fans.fanonlinedata"
-                      id="fan_online_data_id"
-                      showXAxis="true"
-                      showYAxis="true"
-                      width="580"
-                      height="405"
-                      interactive="true"
-                      showControls="true"   
-                      tooltips="true">
-                  </nvd3-discrete-bar-chart>                                  
-                                </div>
-                          </div>
-                      </div>
+    <ng-fb-insight 
+        page="page.id" 
+        parser="genderBreakdown" 
+        api="page_places_checkins_by_age_gender",
+        period="week"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
 
+    <ng-fb-insight 
+        page="page.id" 
+        parser="feedbackBreakdown" 
+        api="page_positive_feedback_by_type",
+        period="day"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
 
-                    <div class="span6" >
-                          <div class="widget">
-                              <div class="widget-header">
-                                  <i class="icon-bar-chart"></i>
-                                  <h3>Gender & Age Demographics</h3> 
-                              </div>
-                                <div class="widget-content" style="width: 538px;height:450px;">
-                                  <p style="font-size:11px;">Gender and age demographics of your Page fans</p>
-                <nvd3-discrete-bar-chart
-                    data="fans.fanagegenderdata"
-                      id="fan_age_gender_data_id"
-                      showXAxis="true"
-                      showYAxis="true"
-                      width="580"
-                      height="405"
-                      interactive="true"
-                      showControls="true"   
-                      tooltips="true">
-                  </nvd3-discrete-bar-chart>                                  
-                                </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-</section>
+    <ng-fb-insight 
+        page="page.id" 
+        parser="dailyLine" 
+        api="page_negative_feedback",
+        period="day"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
 
-<section id="negativefeed" ng-show="negativefeed"> 
-        <div class="container">
-              <div class="span12">
-                   <div class="widget-header"> <i class=" icon-remove-circle "></i>
-                <h3>Negative Feedback</h3>
-              </div>
-              <div class="info-box"  style=" height:400px;">
-                 <div class="row-fluid stats-box">
-                    <div class="span4">
-                      <div class="stats-box-title">Unlikes</div>
-                      <div class="stats-box-all-info"><i class="icon-thumbs-down" style="color:#F30;"></i>  {{negativefeed.unlikes}}</div>
-                      <div class="wrap-chart"><div id="visitor-stat" class="chart">Number of your Page unlikes from the most common places where people can unlike your Page</div></div>
-                      </div>
-                    <div class="span4">
-                      <div class="stats-box-title">Reports</div>
-                      <div class="stats-box-all-info"><i class="icon-file"  style="color:#F30;"></i>  {{negativefeed.reports}}</div>
-                      <div class="wrap-chart"><div id="visitor-stat" class="chart">Number of people who reported your Page</div></div>
-                    </div>
-                    <div class="span4">
-                      <div class="stats-box-title">Hide Requests</div>
-                      <div class="stats-box-all-info"><i class="icon-eye-close" style="color:#F30;"></i>  {{negativefeed.hiderequests}}</div>
-                      <div class="wrap-chart"><div id="visitor-stat" class="chart">Number of people who asked to hide your Page or any of its posts</div></div>
-                    </div>
-                  </div>
-                </div>
-           </div>     
-        </div> 
-</section>
+    <ng-fb-insight 
+        page="page.id" 
+        parser="hourlyLine" 
+        api="page_fans_online",
+        period="day"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
 
+    <h1 ng-show="page.id">Page Views</h1>
 
-<section id="roi" ng-show="roi">
-      <div class="container">
-      <div class="main-inner">
-          <div class="container">
-           <div class="row">
-              <div class="span12">
-                          <div class="widget-header"> <i class=" icon-beaker "></i>
-                <h3>This month...</h3>
-              </div>
-              <div class="info-box"  style=" height:400px;">
-                 <div class="row-fluid stats-box">
-                    <div class="span4">
-                      <div class="stats-box-title">Page Impressions Rate</div>
-                      <div class="stats-box-all-info"><i class="icon-fire" style="color:#3366cc;"></i>{{roi.impressionrate}}%</div>
-                      <div class="wrap-chart"><div id="visitor-stat" class="chart">Seen impressions rate of any content associated with your Page through this month</div></div>
-                      </div>
-                      <div class="span4">
-                      <div class="stats-box-title">Page Reach Ratio</div>
-                      <div class="stats-box-all-info"><i class="icon-magic" style="color:#3366cc;"></i>{{roi.reachrate}}</div>
-                      <div class="wrap-chart"><div id="visitor-stat" class="chart">Number of people your Page reached regarding your Page's fan-base</div></div>
-                      
-                      </div>
-                    <div class="span4">
-                      <div class="stats-box-title">Engagement Rate</div>
-                      <div class="stats-box-all-info"><i class="icon-magnet"  style="color:#3366cc;"></i>{{roi.engagementrate}}%</div>
-                      <div class="wrap-chart"><div id="visitor-stat" class="chart">Users engagement rate regarding your Page's fan-base</div></div>
-                    </div>
+    <ng-fb-insight 
+        page="page.id" 
+        parser="dailyLine" 
+        api="page_views",
+        period="day"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
 
-                    </div>
-                 </div>  
-               </div>   
-           </div>
-           </div>      
-          </div> 
-</section>  
+    <ng-fb-insight 
+        page="page.id" 
+        parser="dailyLine" 
+        api="page_views_unique",
+        period="day"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
+
+    <ng-fb-insight 
+        page="page.id" 
+        parser="dailyLine" 
+        api="page_views_login",
+        period="day"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
+
+    <ng-fb-insight 
+        page="page.id" 
+        parser="dailyLine" 
+        api="page_views_login_unique",
+        period="day"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
+
+    <ng-fb-insight 
+        page="page.id" 
+        parser="dailyLine" 
+        api="page_views_logout",
+        period="day"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
+
+    <h1 ng-show="page.id">Page Posts</h1>
+
+    <ng-fb-insight 
+        page="page.id" 
+        parser="dailyLine" 
+        api="page_posts_impressions_unique",
+        period="day"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
+
+    <ng-fb-insight 
+        page="page.id" 
+        parser="dailyLine" 
+        api="page_posts_impressions_paid_unique",
+        period="day"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
+
+    <ng-fb-insight 
+        page="page.id" 
+        parser="dailyLine" 
+        api="page_posts_impressions_organic_unique",
+        period="day"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
+
+    <ng-fb-insight 
+        page="page.id" 
+        parser="dailyLine" 
+        api="page_posts_impressions_viral_unique",
+        period="day"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
+
+    <h1 ng-show="page.id">Domain Content</h1>
+
+    <ng-fb-insight 
+        page="page.id" 
+        parser="dailyLine" 
+        api="domain_feed_clicks",
+        period="day"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
+
+    <ng-fb-insight 
+        page="page.id" 
+        parser="dailyLine" 
+        api="domain_feed_views",
+        period="day"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
+
+    <ng-fb-insight 
+        page="page.id" 
+        parser="dailyLine" 
+        api="domain_stories",
+        period="day"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
+
+    <ng-fb-insight 
+        page="page.id" 
+        parser="dailyLine" 
+        api="domain_widget_comments_adds",
+        period="day"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
+
+    <ng-fb-insight 
+        page="page.id" 
+        parser="dailyLine" 
+        api="domain_widget_comments_views",
+        period="day"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
+
+    <ng-fb-insight 
+        page="page.id" 
+        parser="dailyLine" 
+        api="domain_widget_comments_feed_views",
+        period="day"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
+
+    <ng-fb-insight 
+        page="page.id" 
+        parser="dailyLine" 
+        api="domain_widget_comments_feed_clicks",
+        period="day"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
+
+    <ng-fb-insight 
+        page="page.id" 
+        parser="dailyLine" 
+        api="domain_widget_like_views",
+        period="day"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
+
+    <ng-fb-insight 
+        page="page.id" 
+        parser="dailyLine" 
+        api="domain_widget_likes",
+        period="day"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
+
+    <ng-fb-insight 
+        page="page.id" 
+        parser="dailyLine" 
+        api="domain_widget_like_feed_views",
+        period="day"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
+
+    <ng-fb-insight 
+        page="page.id" 
+        parser="dailyLine" 
+        api="domain_widget_like_feed_clicks",
+        period="day"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
+
+    <ng-fb-insight 
+        page="page.id" 
+        parser="dailyLine" 
+        api="domain_widget_send_views",
+        period="day"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
+
+    <ng-fb-insight 
+        page="page.id" 
+        parser="dailyLine" 
+        api="domain_widget_send_inbox_views",
+        period="day"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
+
+    <ng-fb-insight 
+        page="page.id" 
+        parser="dailyLine" 
+        api="domain_widget_send_inbox_clicks",
+        period="day"
+        token="user.accessToken"
+        ng-show="page.id"></ng-fb-insight>
+
+    <!--ng-fb-insight-overview ng-show="page.id"></ng-fb-insight-overview>
+    <ng-fb-insight-fans-country ng-show="page.id"></ng-fb-insight-fans-country>
+    <ng-fb-insight-fans-demographic ng-if="page.id"></ng-fb-insight-impressions-country>
+    <ng-fb-insight-fans-online ng-if="pageId"></ng-fb-insight-impressions-country>
+    <ng-fb-insight-today-stats ng-if="pageId"></ng-fb-insight-today-stats>
+    <ng-fb-insight-negative-feedbacks ng-if="pageId"></ng-fb-insight-negative-feedbacks>
+    <ng-fb-insight-roi ng-if="pageId"></ng-fb-insight-roi>
+    <ng-fb-insight-reach ng-if="pageId"></ng-fb-insight-reach>
+    <ng-fb-insight-likes-source ng-if="pageId"></ng-fb-insight-likes-source>
+    <ng-fb-insight-views-source ng-if="pageId"></ng-fb-insight-views-source>
+    <ng-fb-insight-referals ng-if="pageId"></ng-fb-insight-referals>
+    <ng-fb-insight-stories-positive-feedback ng-if="pageId"></ng-fb-insight-stories-positive-feedback>
+    <ng-fb-insight-stories-talking-about ng-if="pageId"></ng-fb-insight-stories-talking-about>
+    <ng-fb-insight-stories-interaction ng-if="pageId"></ng-fb-insight-stories-interaction-->
+</div> 
 
 <footer>
   <div class="twitter">
     <div class="avatar"></div>
     <div>
-      <a href="https://twitter.com/bahaaldine"><span lng="text:by"></span> @bahaaldine <span lng="text:with"></span> <span class="fa fa-heart"></span></a>
+      <a href="https://twitter.com/bahaaldine">by @bahaaldine with <span class="fa fa-heart"></span></a>
     </div>
   </div>
   <div class="github">
     <div class="icon fa fa-github"></div>
-    <div><a href="https://github.com/bahaaldine/angular-csv-import" lng="text:github"></a></div>
+    <div><a href="https://github.com/bahaaldine/ngFontChart">View on Github</a></div>
   </div>
 </footer>

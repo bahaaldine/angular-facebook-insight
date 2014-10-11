@@ -2,7 +2,7 @@
 <html class="no-js">
   <head>
     <meta charset="utf-8">
-    <title>Angular Fast i18n</title>
+    <title>Angular Facebook Insight</title>
     <meta name="description" content="Facebook page insight dashboard for Angularjs">
     <meta name="viewport" content="width=device-width">
     <meta name="keywords" content="facebook insight, chart, dashboard, social, bahaaldine, github, angular, html5">
@@ -16,6 +16,7 @@
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/highlightjs/styles/default.css" />
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/nvd3/src/nv.d3.css" />
     <!-- endbower -->
     <link rel="stylesheet" href="bower_components/angular-font-chart/dist/angular-font-chart.min.css"/>
     <link rel="stylesheet" href="bower_components/odometer/themes/odometer-theme-minimal.css"/>
@@ -25,6 +26,7 @@
     <!-- endbuild -->
   </head>
   <body ng-app="examplesApp">
+    <div id="fb-root"></div>
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -34,9 +36,7 @@
       <div ng-view=""></div>
     </div>
 
-
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-     <script>
+    <script>
        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -46,14 +46,12 @@
        ga('send', 'pageview');
     </script>
 
-    <!--[if lt IE 9]>
-    <script src="bower_components/es5-shim/es5-shim.js"></script>
-    <script src="bower_components/json3/lib/json3.min.js"></script>
-    <![endif]-->
+    <script type='text/javascript' src='https://www.google.com/jsapi'></script>
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/json3/lib/json3.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
@@ -65,13 +63,34 @@
     <script src="bower_components/odometer/odometer.js"></script>
     <script src="bower_components/angular-odometer/dist/angular-odometer.js"></script>
     <script src="bower_components/angular-font-chart/dist/angular-font-chart.js"></script>
+    <script src="bower_components/d3/d3.js"></script>
+    <script src="bower_components/nvd3/nv.d3.js"></script>
+    <script src="bower_components/angularjs-nvd3-directives/dist/angularjs-nvd3-directives.js"></script>
+    <script src="bower_components/angular-facebook-insight/dist/angular-facebook-insight.js"></script>
+    <script src="bower_components/angular-google-chart/ng-google-chart.js"></script>
+    <script src="bower_components/Chart.js/Chart.min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/main.js"></script>
-    <script src="scripts/controllers/about.js"></script>
     <!-- endbuild -->
+
+    <script src="http://connect.facebook.net/en_US/sdk.js"></script>
+    <script>
+
+        google.load('visualization', '1', {'packages': ['geomap']});
+        google.load("visualization", "1", {packages:["corechart"]});
+        google.load("visualization", "1", {packages: ["map"]});
+        google.load('visualization', '1.1', {'packages':['annotationchart']});
+        
+      FB.init({
+        appId      : '230291637171115', 
+          version  : 'v2.1',    
+        status     : true,                              
+        xfbml      : true 
+      });
+    </script>
 </body>
 </html>

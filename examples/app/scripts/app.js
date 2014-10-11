@@ -13,8 +13,8 @@ angular
     'ngResource',
     'ngRoute',
     'ngFastI18n',
-    'hljs',
-    'ngFontChart'
+    'ngFontChart',
+    'angular-facebook-insight'
   ])
   .config(function ($routeProvider) {
     $routeProvider

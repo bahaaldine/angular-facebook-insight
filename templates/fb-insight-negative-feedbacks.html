@@ -1,0 +1,28 @@
+<section id="negativefeed" ng-show="negativefeed"> 
+        <div class="container">
+              <div class="span12">
+                   <div class="widget-header"> <i class=" icon-remove-circle "></i>
+                <h3>Negative Feedback</h3>
+              </div>
+              <div class="info-box"  style=" height:400px;">
+                 <div class="row-fluid stats-box">
+                    <div class="span4">
+                      <div class="stats-box-title">Unlikes</div>
+                      <div class="stats-box-all-info"><i class="icon-thumbs-down" style="color:#F30;"></i>  {{negativefeed.unlikes}}</div>
+                      <div class="wrap-chart"><div id="visitor-stat" class="chart">Number of your Page unlikes from the most common places where people can unlike your Page</div></div>
+                      </div>
+                    <div class="span4">
+                      <div class="stats-box-title">Reports</div>
+                      <div class="stats-box-all-info"><i class="icon-file"  style="color:#F30;"></i>  {{negativefeed.reports}}</div>
+                      <div class="wrap-chart"><div id="visitor-stat" class="chart">Number of people who reported your Page</div></div>
+                    </div>
+                    <div class="span4">
+                      <div class="stats-box-title">Hide Requests</div>
+                      <div class="stats-box-all-info"><i class="icon-eye-close" style="color:#F30;"></i>  {{negativefeed.hiderequests}}</div>
+                      <div class="wrap-chart"><div id="visitor-stat" class="chart">Number of people who asked to hide your Page or any of its posts</div></div>
+                    </div>
+                  </div>
+                </div>
+           </div>     
+        </div> 
+</section>

@@ -1,15 +1,26 @@
 {
-    "id": "fr",
-    "moto": "une meilleure internationlisation",
-    "actions": {
-        "signin": "Se <b>Connecter</b>",
-        "signup": "S'inscrire"
+    "label": {
+        "about": "A propos",
+        "logo": "Logo",
+        "category": "Catégorie",
+        "cover": "Couverture",
+        "published": "Publiée",
+        "likes": {
+            "count": "Total",
+            "new": "Nouveau"
+        },
+        "link": "URL",
+        "name": "Nom",
+        "promotion": "Promotion",
+        "talking": "Combien en parle",
+        "message": {
+            "unread": "Non lu",
+            "unseen": "Non vu"
+        },
+        "notification": {
+            "unread": "Non lu"
+        }
     },
-    "sex": {
-        "male": "Homme",
-        "female": "Femme"
-    },
-    "search": "Rechercher n'importe quoi",
     "github": "Voir sur Github",
     "by": "Par",
     "with": "avec"

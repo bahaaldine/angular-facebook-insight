@@ -1,0 +1,32 @@
+<section id="referrals" ng-show="referrals">
+ <div class="container">
+        <div class="span5" style=" width:550px;">
+          <div class="widget">
+            <div class="widget-header"> <i class="icon-signout"></i>
+              <h3>Internal Referrers</h3>
+            </div>
+            <div class="widget-content"  style=" height:400px;">
+                  <p>Internal referrals to your Page</p>              
+            <h1 ng-repeat="referral in referrals.internaldata">
+              <br> 
+              <br>{{referral}}
+            </h1>              
+            </div>
+          </div>
+        </div>         
+        <div class="span5"  style=" width:550px;">
+          <div class="widget">
+            <div class="widget-header"> <i class="icon-signin"></i>
+              <h3>External Referrers</h3>
+            </div>
+            <div class="widget-content"  style=" height:400px;">
+                  <p>External referrals to your Page</p>              
+            <h1 ng-repeat="referral in referrals.externaldata">
+              <br> 
+              <br>{{referral}}
+            </h1>              
+            </div>
+          </div>          
+        </div> 
+      </div>
+</section>

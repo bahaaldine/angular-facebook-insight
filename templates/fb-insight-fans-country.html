@@ -1,0 +1,26 @@
+<section id="overview" ng-show="overview">
+      <div class="main-inner">
+        <div class="span7"  >
+          <div class="widget">
+            <div class="widget-header"> <i class="icon-bookmark"></i>
+              <h3>General infos</h3>
+            </div>
+              <div  style="height:118px;" class="widget-content"  
+                <u1 ng-repeat="i in overview.generalinfodata">
+                  <p style="font-size:13px; font-weight:bold;">{{i.info}}<p>
+                </u1>
+            </div>
+          </div>
+        </div>
+        <div class="span6" style="width:550px;" >
+          <div class="widget">
+            <div class="widget-header"> <i class="icon-cloud "></i>
+              <h3>Word Cloud</h3>
+            </div>
+            <div class="widget-content">
+<img src="https://graph.facebook.com/{{overview.pageid}}/picture" style="width:400px; height:428px;" />
+            </div>
+          </div>
+        </div> 
+ </div>
+</section>
