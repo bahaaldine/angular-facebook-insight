@@ -1,4 +1,4 @@
-/*! angular-facebook-insight - v0.6.4 - 2014-08-07
+/*! angular-facebook-insight - v0.6.4 - 2014-10-14
 * Copyright (c) 2014 ; Licensed  */
   /*! angular-facebook-insight - v0.6.1 - 2014-07-13
 * Copyright (c) 2014 ; Licensed  */
