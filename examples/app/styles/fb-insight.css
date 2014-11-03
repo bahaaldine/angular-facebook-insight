@@ -3,8 +3,8 @@ div.ng-fb-post-details {
 	background: white;
 	font-family: Helvetica, Arial, 'lucida grande', tahoma, verdana, arial, sans-serif;
 	font-size: 12px;
-	width: 512px;
 	padding: 10px;
+	margin: 0px 0px 10px 0px;
 	border-radius: 2px;
 	min-height: 537px;
 }
@@ -71,4 +71,34 @@ div.ng-fb-post-details > div > div.post-description > div > div.text > div.post-
 
 div.ng-fb-post-details > div > div.post-description > div > div.text > div.post-caption {
 	color: rgb(145, 151, 163);
+}
+
+div.post-insight-metric {
+  background: white;
+  margin: 0px 0px 10px 0px;
+}
+
+div.post-insight-metric > div > div.template {
+  text-align: center;
+}
+
+div.post-insight-metric > div > div.template > div > div.title {
+    color: #888; 
+    font-weight: 500;
+    padding: 10px 0px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 12px;
+}
+
+div.post-insight-metric > div > div.template > div > div.title > span {
+  margin: 0px 0px 0px 5px;
+}
+
+div.post-insight-metric > div > div.template > div > div.value {
+    color: #444; 
+    font-family: Helvetica, Arial, 'lucida grande', tahoma, verdana, arial, sans-serif; 
+    font-size: 40px;
+    font-weight: 600;
+    background: #efefef;
 }

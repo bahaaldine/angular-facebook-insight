@@ -3,14 +3,36 @@
     
     <div class="post-insights overview"><div>
       
-      <div ng-fb-post-details class="post-details" token="token" post-id="postId"></div>
-      
-      <div class="post-insight-group">
+      <div class="insight-column left">
+        <div ng-fb-post-details class="post-details" token="token" post-id="postId"></div>
+        
+        <div class="post-insight post-insight-metric">
+          <div ng-fb-insight ng-show="interestRate"
+            data="interestRate"
+            template="gauge"
+            label="insights.impressions.total"></div>
+        </div>
+
+        <div class="post-insight post-insight-metric">
+          <div ng-fb-insight ng-show="viralityRate"
+            data="viralityRate"
+            template="gauge"
+            label="insights.impressions.total"></div>
+        </div>
+      </div>
+
+      <div class="insight-column right">
         <div class="post-insight post-insight-metric">
           <div ng-fb-insight ng-show="reach"
             data="reach"
             template="reach"
             label="insights.reach"></div>
+        </div>
+        <div class="post-insight post-insight-metric">
+          <div ng-fb-insight ng-show="engagementRate"
+            data="engagementRate"
+            template="gauge"
+            label="insights.impressions.total"></div>
         </div>
         <div class="post-insight post-insight-metric">
           <div ng-fb-insight ng-show="impressions"
@@ -24,227 +46,16 @@
             template="bar"
             label="insights.impressions.total"></div>
         </div>
-       
-        <!--div class="post-insight ">
-          <div ng-fb-insight 
-              page="postId" 
-              parser="impressionsPie" 
-              api="post_impressions_by_paid_non_paid",
-              period="lifetime"
-              token="token"
-              show-title="true"
-              ng-show="postId"></div>
-        </div>
-        <div class="post-insight ">
-          <div ng-fb-insight 
-              page="postId" 
-              parser="engagementRate" 
-              api="post_impressions_by_paid_non_paid",
-              period="lifetime"
-              token="token"
-              show-title="true"
-              ng-show="postId"></div>
-        </div-->
-
-      </div>
-
-    </div></div>
-
-    <div class="post-insights engagement"><div>
-       <div class="post-insight post-insight-metric">
-          <div ng-fb-insight ng-show="engagementRate"
-            data="engagementRate"
-            template="gauge"
-            label="insights.impressions.total"></div>
-        </div>
         <div class="post-insight post-insight-metric">
           <div ng-fb-insight ng-show="conversionRate"
             data="conversionRate"
             template="gauge"
             label="insights.impressions.total"></div>
         </div>
-        <div class="post-insight post-insight-metric">
-          <div ng-fb-insight ng-show="interestRate"
-            data="interestRate"
-            template="gauge"
-            label="insights.impressions.total"></div>
-        </div>
-        <div class="post-insight post-insight-metric">
-          <div ng-fb-insight ng-show="viralityRate"
-            data="viralityRate"
-            template="gauge"
-            label="insights.impressions.total"></div>
-        </div>
-      <!--div class="post-insight"><div>
-        <div ng-fb-insight 
-            page="postId" 
-            parser="storyTellersBar" 
-            api="post_storytellers_by_action_type",
-            period="lifetime"
-            token="token"
-            show-title="true"
-            ng-show="postId"></div>
-      </div></div>
-       <div class="post-insight"><div>
-        <div ng-fb-insight 
-            page="postId" 
-            parser="storyTellersBar" 
-            api="post_storytellers_by_action_type",
-            period="lifetime"
-            token="token"
-            show-title="true"
-            ng-show="postId"></div>
-      </div></div>
+        
+      </div>
+
     </div></div>
-
-     <!--div class="post-insights middle"><div>
-
-          <div ng-fb-insight 
-              page="postId" 
-              parser="odometer" 
-              api="post_impressions",
-              period="lifetime"
-              label="insights.impressions.total"
-              token="token"
-              show-title="true"
-              ng-show="postId"></div>
-
-          <div ng-fb-insight 
-              page="postId" 
-              parser="odometer" 
-              api="post_impressions_paid",
-              label="insights.impressions.paid.total"
-              period="lifetime"
-              token="token"
-              show-title="true"
-              ng-show="postId"></div>
-
-          <div ng-fb-insight 
-              page="postId" 
-              parser="odometer" 
-              api="post_impressions_paid_unique",
-              label="insights.impressions.paid.unique"
-              period="lifetime"
-              token="token"
-              show-title="true"
-              ng-show="postId"></div>
-
-          <div ng-fb-insight 
-              page="postId" 
-              parser="odometer" 
-              api="post_impressions_fan",
-              label="insights.impressions.fan.total"
-              period="lifetime"
-              token="token"
-              show-title="true"
-              ng-show="postId"></div>
-
-          <div ng-fb-insight 
-              page="postId" 
-              parser="odometer" 
-              label="insights.impressions.fan.unique"
-              api="post_impressions_fan_unique",
-              period="lifetime"
-              token="token"
-              show-title="true"
-              ng-show="postId"></div>
-
-          
-          <div ng-fb-insight 
-              page="postId" 
-              parser="odometer" 
-              api="post_impressions_organic",
-              label="insights.impressions.organic.total"
-              period="lifetime"
-              token="token"
-              show-title="true"
-              ng-show="postId"></div>
-
-          <div ng-fb-insight 
-              page="postId" 
-              parser="odometer" 
-              api="post_impressions_organic_unique",
-              label="insights.impressions.organic.unique"
-              period="lifetime"
-              token="token"
-              show-title="true"
-              ng-show="postId"></div>
-
-          <div ng-fb-insight 
-              page="postId" 
-              parser="odometer" 
-              api="post_impressions_viral",
-              label="insights.impressions.viral.total"
-              period="lifetime"
-              token="token"
-              show-title="true"
-              ng-show="postId"></div>
-
-          <div ng-fb-insight 
-              page="postId" 
-              parser="odometer" 
-              api="post_impressions_viral_unique",
-              label="insights.impressions.viral.unique"
-              period="lifetime"
-              token="token"
-              show-title="true"
-              ng-show="postId"></div>
-
-          <div ng-fb-insight 
-              page="postId" 
-              parser="odometer" 
-              api="post_stories",
-              period="lifetime"
-              label="insights.stories"
-              token="token"
-              show-title="true"
-              ng-show="postId"></div>
-          <div ng-fb-insight 
-              page="postId" 
-              parser="odometer" 
-              label="insights.storytellers"
-              api="post_storytellers",
-              period="lifetime"
-              token="token"
-              show-title="true"
-              ng-show="postId"></div>
-
-        <div class="post-insight consumptions"><div>
-          <div ng-fb-insight 
-              page="postId" 
-              parser="odometerByType" 
-              api="post_consumptions_by_type",
-              period="lifetime"
-              token="token"
-              show-title="true"
-              ng-show="postId"></div>
-        </div></div>
-
-        <div class="post-insight negative"><div>
-          <div ng-fb-insight 
-              page="postId" 
-              parser="odometerByType" 
-              api="post_negative_feedback_by_type",
-              period="lifetime"
-              token="token"
-              show-title="true"
-              ng-show="postId"></div>
-        </div></div>
-
-        <div class="post-insight"><div>
-          <div ng-fb-insight 
-              page="postId" 
-              parser="odometerByType" 
-              api="post_impressions_by_story_type",
-              period="lifetime"
-              token="token"
-              show-title="true"
-              ng-show="postId"></div>
-        </div></div>
-
-      </div></div>
-
-    </div></div-->
 
 </div> 
 
