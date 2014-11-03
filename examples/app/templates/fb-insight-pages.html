@@ -1,0 +1,11 @@
+<div>
+
+	<select ng-show="pagesList" ng-model="page.id" size="1" ng-change="updatePage(page.id)">
+		<option ng-repeat="page in pagesList" 
+		value="{{page.id}}">{{page.name}}</option></select>
+
+	<select ng-show="postsList" ng-model="post.id" size="1" ng-change="updatePost(post.id)">
+		<option ng-repeat="post in postsList" 
+				value="{{post.id}}">{{post.id}}</option></select>
+
+</div>

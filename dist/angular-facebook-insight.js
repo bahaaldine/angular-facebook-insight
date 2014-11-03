@@ -390,6 +390,23 @@ angular.module("angular-facebook-insight",
     }
   };
 }])
+
+.directive('ngFbPostDetails', function() {
+  return {
+    restrict: 'E',
+    scope: {
+      post: '=',
+      token: '='
+    },
+    template: 'templates/fb-post-details.html',
+    link: function(scope, element, attrs) {
+      FB.api('/'+scope.post+'?access_token='+scope.token, function(response){
+        scope.data = response;
+      });
+    }
+  };
+})
+
 .directive('geomap', [function() {
   return {
     restrict: 'EA',

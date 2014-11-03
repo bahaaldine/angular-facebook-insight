@@ -1,24 +1,26 @@
 {
-    "label": {
-        "about": "A propos",
-        "logo": "Logo",
-        "category": "Catégorie",
-        "cover": "Couverture",
-        "published": "Publiée",
-        "likes": {
-            "count": "Total",
-            "new": "Nouveau"
-        },
-        "link": "URL",
-        "name": "Nom",
-        "promotion": "Promotion",
-        "talking": "Combien en parle",
-        "message": {
-            "unread": "Non lu",
-            "unseen": "Non vu"
-        },
-        "notification": {
-            "unread": "Non lu"
+    "insights":{
+        "reach": "Reach Facebook",
+        "impressions": {
+        	"total": "Total impressions",
+            "paid": {
+        		"total": "Total paid impressions",
+        		"unique": "Unique paid impressions"
+        	},
+        	"fan": {
+        		"total": "Total fan impressions",
+        		"unique": "Unique paid fan impressions"
+        	},
+        	"organic": {
+        		"total": "Total organic impressions",
+        		"unique": "Unique organic impressions"
+        	},
+        	"viral": {
+        		"total": "Total viral impressions",
+        		"unique": "Unique paid organic impressions"
+        	},
+        	"stories": "",
+        	"storytellers": "" 
         }
     },
     "github": "Voir sur Github",
