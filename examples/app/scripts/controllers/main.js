@@ -21,10 +21,13 @@ angular.module('examplesApp')
 				$scope.reach = FacebookInsightService.getReach(insights);
 				$scope.impressions = FacebookInsightService.getImpressions(insights);
 				$scope.storyTellers = FacebookInsightService.getStoryTellers(insights);
-				$scope.engagementRate = FacebookInsightService.getEngagementRate(insights);
-				$scope.conversionRate = FacebookInsightService.getConversionRate(insights);
-				$scope.interestRate = FacebookInsightService.getInterestRate(insights);
-				$scope.viralityRate = FacebookInsightService.getViralityRate(insights);
+				$scope.negativeStories = FacebookInsightService.getNegativeStories(insights);
+				$scope.engagementRate = FacebookInsightService.getEngagementRateGauge(insights);
+				$scope.conversionRate = FacebookInsightService.getConversionRateGauge(insights);
+				$scope.interestRate = FacebookInsightService.getInterestRateGauge(insights);
+				$scope.viralityRate = FacebookInsightService.getViralityRateGauge(insights);
+				$scope.negativeRate = FacebookInsightService.getNegativeRateGauge(insights);
+				$scope.rates = FacebookInsightService.getRatesSpider(insights);
 			});
 		});
 	});

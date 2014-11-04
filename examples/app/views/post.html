@@ -19,6 +19,18 @@
             template="gauge"
             label="insights.impressions.total"></div>
         </div>
+        <div class="post-insight post-insight-metric">
+          <div ng-fb-insight ng-show="rates"
+            data="rates"
+            template="spider"
+            label="insights.reach"></div>
+        </div>
+        <div class="post-insight post-insight-metric">
+          <div ng-fb-insight ng-show="negativeStories"
+            data="negativeStories"
+            template="bar"
+            label="insights.impressions.total"></div>
+        </div>
       </div>
 
       <div class="insight-column right">
@@ -52,7 +64,12 @@
             template="gauge"
             label="insights.impressions.total"></div>
         </div>
-        
+        <div class="post-insight post-insight-metric">
+          <div ng-fb-insight ng-show="negativeRate"
+            data="negativeRate"
+            template="gauge"
+            label="insights.impressions.total"></div>
+        </div>
       </div>
 
     </div></div>

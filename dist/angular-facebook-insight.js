@@ -1,4 +1,4 @@
-/*! angular-facebook-insight - v0.6.11 - 2014-11-03
+/*! angular-facebook-insight - v0.6.12 - 2014-11-04
 * Copyright (c) 2014 ; Licensed  */
   /*! angular-facebook-insight - v0.6.1 - 2014-07-13
 * Copyright (c) 2014 ; Licensed  */
@@ -17,6 +17,15 @@ angular.module("angular-facebook-insight-tpls",
 /*! angular-facebook-insight - v0.6.4 - 2014-08-07
 * Copyright (c) 2014 ; Licensed  */
 'use strict';
+
+angular.module("angular-facebook-insight-tpls", 
+  ["templates/fb-insight-dailyLine.html"
+  ,"templates/fb-insight-feedbackBreakdown.html"
+  ,"templates/fb-insight-genderBreakdown.html"
+  ,"templates/fb-insight-geomap.html"
+  ,"templates/fb-insight-hourlyLine"
+  ,"templates/fb-insight-map.html"
+  ,"templates/fb-insight-text.html"]);
 
 angular.module("angular-facebook-insight",
   ["nvd3ChartDirectives", "googlechart"])
@@ -92,8 +101,8 @@ angular.module("angular-facebook-insight",
         series: [{
             data: [value],
             dataLabels: {
-            format: '<div style="text-align:center"><span style="font-size:25px;color:#444">{y}</span><span style="font-size:12px;color:silver"> %</span></div>'
-          }
+             format: '<div style="text-align:center"><span style="font-size:25px;color:#444">{y}</span><span style="font-size:12px;color:silver"> %</span></div>'
+            }
         }],
         title: {
             text: title,
@@ -138,10 +147,11 @@ angular.module("angular-facebook-insight",
         loading: false,
         credits: {
           enabled: false
-        }
+        },
+        size: '100%'
       }
     },
-    getBar: function(data, title, shareName) {
+    getBar: function(data, categories, title, shareName) {
       return {
         chart: {
             type: 'bar'
@@ -150,7 +160,7 @@ angular.module("angular-facebook-insight",
             text: title
         },
         xAxis: {
-            categories: ['Likes', 'Comments', 'Share']
+            categories: categories
         },
         yAxis: {
             min: 0
@@ -181,46 +191,51 @@ angular.module("angular-facebook-insight",
           type: 'column',
           data: data,
           id: 'series-3'
-        }],
-        size:{height:'300'},
+        }]
       };
     },
-    getSpider :function(categories, data, unit, title, shareName) {
+    getSpider: function(categories, data, unit, title, shareName) {
       return {
-        chart: {
+        options: {
+          chart: {
             polar: true,
             type: 'line'
+          }
         },
+
         title: {
             text: title,
             x: -80
         },
+        
         pane: {
-            size: '80%'
+          size: '100%'
         },
+        
         xAxis: {
             categories: categories,
             tickmarkPlacement: 'on',
             lineWidth: 0
         },
+            
         yAxis: {
             gridLineInterpolation: 'polygon',
             lineWidth: 0,
             min: 0
         },
-        credits: {
-            enabled: false
-        },
+        
         tooltip: {
-            shared: true,
-            pointFormat: '<span style="color:{series.color}">{series.name}: <b>'+unit+'{point.y:,.0f}</b><br/>'
+          shared: true,
+          pointFormat: '<span style="color:{series.color}">{series.name}: <b>${point.y:,.0f}</b><br/>'
         },
+        
         legend: {
             align: 'right',
             verticalAlign: 'top',
             y: 70,
             layout: 'vertical'
         },
+        
         series: [{
             name: shareName,
             data: data,
@@ -259,6 +274,7 @@ angular.module("angular-facebook-insight",
 
   var getPostInsights = function(post, token) {
     var deferred = $q.defer();
+    console.log(post)
     FB.api('/'+post+'/insights?access_token='+token, function(response) {
       deferred.resolve(getInsightHashmap(response.data));
     });
@@ -279,7 +295,17 @@ angular.module("angular-facebook-insight",
       insights['post_storytellers_by_action_type'].values[0].value.comment,
       insights['post_storytellers_by_action_type'].values[0].value.share
     ];
-    return Parser.getBar(data, "Engagement par type", "Type d\'engagement");
+    return Parser.getBar(data, ['Likes', 'Comments', 'Share'], "Engagement par type", "Type d\'engagement");
+  }
+
+  var getNegativeStories = function(insights) {
+    var negatives = insights['post_negative_feedback_by_type_unique'].values[0].value;
+    var hideClicks = (angular.isDefined(negatives.hide_clicks) ? negatives.hide_clicks : 0);
+    var hideAllClicks = (angular.isDefined(negatives.hide_all_clicks) ? negatives.hide_all_clicks : 0);
+    var reportSpam = (angular.isDefined(negatives.report_spam) ? negatives.report_spam : 0);
+
+    var data = [ hideClicks, hideAllClicks, reportSpam ];
+    return Parser.getBar(data, ['Hide clicks', 'Hide all clicks', 'Report Spam'], "Retours negatif par type", "Type de retour");
   }
 
   var getImpressions = function(insights) {
@@ -313,8 +339,7 @@ angular.module("angular-facebook-insight",
       engagementRate = Math.round(((comments+likes+shares) / impressions.values[0].value) * 100);
     }
 
-
-    return Parser.getGauge(engagementRate, "Taux d'engagement");
+    return engagementRate;
   }
 
   var getConversionRate = function(insights) {
@@ -331,8 +356,7 @@ angular.module("angular-facebook-insight",
 
     var conversionRate = Math.round(((likes + shares + comments) / (photoViews + otherClicks + linkClicks))*100);
 
-
-    return Parser.getGauge(conversionRate, "Taux de conversion");
+    return conversionRate;
   }
 
   var getInterestRate = function(insights) {
@@ -348,7 +372,7 @@ angular.module("angular-facebook-insight",
       interestRate = Math.round(((photoViews+otherClicks+linkClicks) / impressions.values[0].value) * 100);
     }
 
-    return Parser.getGauge(interestRate, "Taux d'intérêt");
+    return interestRate;
   }
 
   var getViralityRate = function(insights) {
@@ -358,8 +382,44 @@ angular.module("angular-facebook-insight",
     if ( impressions.values[0].value > 0 ) {
       viralityRate = Math.round(( virality.values[0].value / impressions.values[0].value) * 100);
     }
+    return viralityRate;
+  }
 
-    return Parser.getGauge(viralityRate, "Taux de viralité");
+  var getNegativeRate = function(insights) {
+    var negatives = insights['post_negative_feedback_unique'];
+    var impressions =  insights['post_impressions_unique'];
+    var negativeRate = 0;
+    if ( impressions.values[0].value > 0 ) {
+      negativeRate = Math.round(( negatives.values[0].value / impressions.values[0].value) * 100);
+    }
+    return negativeRate;
+  }
+
+  var getEngagementRateGauge = function(insights) {
+    return Parser.getGauge(getEngagementRate(insights), "Taux d'engagement");
+  }
+
+  var getConversionRateGauge = function(insights) {
+    return Parser.getGauge(getConversionRate(insights), "Taux de conversion");
+  }
+
+  var getInterestRateGauge = function(insights) {
+    return Parser.getGauge(getInterestRate(insights), "Taux d'intérêt");
+  }
+
+  var getViralityRateGauge = function(insights) {
+    return Parser.getGauge(getViralityRate(insights), "Taux de viralité");
+  }
+
+  var getNegativeRateGauge = function(insights) {
+    return Parser.getGauge(getNegativeRate(insights), "Taux de retour négatif");
+  }
+
+  var getRatesSpider = function(insights) {
+    var categories = ['Engagement', 'Conversion', 'Interest', 'Virality', 'Negative'];
+    var data = [getEngagementRate(insights), getConversionRate(insights), getInterestRate(insights), getViralityRate(insights), getNegativeRate(insights)];
+
+    return Parser.getSpider(categories, data, '%', 'Performance du post', 'Taux');
   }
 
   return {
@@ -368,10 +428,13 @@ angular.module("angular-facebook-insight",
     getImpressions: getImpressions,
     getReach: getReach,
     getStoryTellers: getStoryTellers,
-    getEngagementRate: getEngagementRate,
-    getConversionRate: getConversionRate,
-    getInterestRate: getInterestRate,
-    getViralityRate: getViralityRate
+    getNegativeStories: getNegativeStories,
+    getEngagementRateGauge: getEngagementRateGauge,
+    getConversionRateGauge: getConversionRateGauge,
+    getInterestRateGauge: getInterestRateGauge,
+    getViralityRateGauge: getViralityRateGauge,
+    getNegativeRateGauge: getNegativeRateGauge,
+    getRatesSpider: getRatesSpider
   } 
 }])
 
@@ -513,7 +576,6 @@ angular.module("angular-facebook-insight",
   };
 
 }]);
-
 angular.module('templates/fb-insight-bar.html', []).run(['$templateCache', function($templateCache) {
   'use strict';
 
