@@ -27,6 +27,8 @@
     "d3": "~3.4.6",
     "nvd3": "~1.1.15-beta",
     "angularjs-nvd3-directives": "~0.0.7",
-    "font-awesome": "4.0.x"
+    "font-awesome": "4.0.x",
+    "highcharts-ng": "~0.0.7",
+    "highcharts": "~4.0.4"
   }
 }
