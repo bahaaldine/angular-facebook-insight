@@ -1,4 +1,4 @@
-/*! angular-facebook-insight - v0.6.18 - 2014-11-05
+/*! angular-facebook-insight - v0.6.19 - 2014-11-05
 * Copyright (c) 2014 ; Licensed  */
   /*! angular-facebook-insight - v0.6.1 - 2014-07-13
 * Copyright (c) 2014 ; Licensed  */
@@ -13,7 +13,8 @@ angular.module("angular-facebook-insight-tpls",
   ,"templates/fb-insight-geomap.html"
   ,"templates/fb-insight-hourlyLine"
   ,"templates/fb-insight-map.html"
-  ,"templates/fb-insight-text.html"]);
+  ,"templates/fb-insight-text.html"
+  ,"templates/fb-post-details.html"]);
 /*! angular-facebook-insight - v0.6.4 - 2014-08-07
 * Copyright (c) 2014 ; Licensed  */
 'use strict';
@@ -25,7 +26,8 @@ angular.module("angular-facebook-insight-tpls",
   ,"templates/fb-insight-geomap.html"
   ,"templates/fb-insight-hourlyLine"
   ,"templates/fb-insight-map.html"
-  ,"templates/fb-insight-text.html"]);
+  ,"templates/fb-insight-text.html"
+  ,"templates/fb-post-details.html"]);
 
 angular.module("angular-facebook-insight",
   ["nvd3ChartDirectives", "googlechart"])
