@@ -68,3 +68,29 @@ angular.module('templates/fb-insight-reach.html', []).run(['$templateCache', fun
   );
 
 }]);
+
+angular.module('templates/fb-post-details.html', []).run(['$templateCache', function($templateCache) {
+  'use strict';
+
+  $templateCache.put('templates/fb-post-details.html',
+    "<div class=\"ng-fb-post-details\" ng-if=\"post\"><div>\n" +
+    "\t<div class=\"post-header\"><div>\n" +
+    "\t\t<div class=\"page-picture\"><img ng-src=\"http://graph.facebook.com/{{post.page}}/picture\"></div>\n" +
+    "\t\t<div class=\"page-name\">{{post.company}}</div>\n" +
+    "\t\t<div class=\"post-publish-date\">{{post.created}}</div>\n" +
+    "\t</div></div>\n" +
+    "\n" +
+    "\t<div class=\"post-message\"><div>{{post.message}}</div></div>\n" +
+    "\n" +
+    "\t<div class=\"post-description\"><div>\n" +
+    "\t\t<div class=\"post-picture\"><img ng-src=\"{{post.picture}}\"></img></div>\n" +
+    "\t\t<div class=\"text\">\n" +
+    "\t\t\t<div class=\"post-name\">{{post.name}}</div>\n" +
+    "\t\t\t<div class=\"post-caption\">{{post.caption}}</div>\n" +
+    "\t\t\t<div class=\"post-cta\"></div>\n" +
+    "\t\t</div>\n" +
+    "\t</div></div>\n" +
+    "</div></div>"
+  );
+
+}]);
