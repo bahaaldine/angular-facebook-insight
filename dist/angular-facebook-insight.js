@@ -1,4 +1,4 @@
-/*! angular-facebook-insight - v0.6.12 - 2014-11-04
+/*! angular-facebook-insight - v0.6.17 - 2014-11-05
 * Copyright (c) 2014 ; Licensed  */
   /*! angular-facebook-insight - v0.6.1 - 2014-07-13
 * Copyright (c) 2014 ; Licensed  */
@@ -520,62 +520,7 @@ angular.module("angular-facebook-insight",
       });
     }
   };
-})
-
-.directive('geomap', [function() {
-  return {
-    restrict: 'EA',
-    scope: {
-      data: '=',
-      fetch: '=  '
-    },
-    link: function(scope, element, attrs) {
-      var geomap = new google.visualization.GeoMap(element[0]);
-      scope.$watch('data', function(value) {
-        if ( value != null ) {
-          var data = google.visualization.arrayToDataTable(value);
-          var options = {
-            dataMode: 'regions',
-            width: element.parent()[0].offsetWidth,
-            height: 220,
-            backgroundColor: '#ffffff'
-          }
-          geomap.draw(data, options);
-        }
-      });
-      if ( typeof scope.fetch != "undefined") {
-        scope.fetch();
-      }
-    }
-  };
-
-}])
-.directive('map', [function() {
-  return {
-    restrict: 'EA',
-    scope: {
-      data: '=',
-      fetch: '='
-    },
-    link: function(scope, element, attrs) {
-      var map = new google.visualization.Map(element[0]);
-      scope.$watch('data', function(value) {
-        if ( value != null ) {
-          var data = google.visualization.arrayToDataTable(value);
-          var options = {
-            showTip: true,
-            width: element.parent()[0].offsetWidth
-          }
-          map.draw(data, options);
-        }
-      });
-      if ( typeof scope.fetch != "undefined") {
-        scope.fetch();
-      }
-    }
-  };
-
-}]);
+});
 angular.module('templates/fb-insight-bar.html', []).run(['$templateCache', function($templateCache) {
   'use strict';
 
