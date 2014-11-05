@@ -1,4 +1,4 @@
-/*! angular-facebook-insight - v0.6.20 - 2014-11-05
+/*! angular-facebook-insight - v0.6.21 - 2014-11-05
 * Copyright (c) 2014 ; Licensed  */
   /*! angular-facebook-insight - v0.6.1 - 2014-07-13
 * Copyright (c) 2014 ; Licensed  */
@@ -18,7 +18,7 @@ angular.module("angular-facebook-insight-tpls",
 'use strict';
 
 angular.module("angular-facebook-insight",
-  ["nvd3ChartDirectives", "googlechart"])
+  ["nvd3ChartDirectives", "googlechart", "angular-facebook-insight-tpls"])
 
 .service('Parser', ['$filter', function($filter) {
   return {
