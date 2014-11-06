@@ -1,4 +1,4 @@
-/*! angular-facebook-insight - v0.6.25 - 2014-11-05
+/*! angular-facebook-insight - v0.6.26 - 2014-11-06
 * Copyright (c) 2014 ; Licensed  */
   /*! angular-facebook-insight - v0.6.1 - 2014-07-13
 * Copyright (c) 2014 ; Licensed  */
@@ -253,6 +253,26 @@ angular.module("angular-facebook-insight",
 
 .service('FacebookInsightService', ['$rootScope', '$q', 'Parser', function($rootScope, $q, Parser) {
 
+  var getPages = function(token) {
+    var deferred = $q.defer();
+    FB.api('/me/accounts?access_token='+token, function(response) {
+      deferred.resolve(response.data);
+    });
+    return deferred.promise;
+  }
+
+  var getPostsByPage = function(page, token, cursor) {
+    var deferred = $q.defer();
+    var url = '/'+page+'/feed?access_token='+token;
+    if ( angular.isDefined(cursor) ) {
+      url = cursor;
+    }
+    FB.api(url, function(response) {
+      deferred.resolve(response);
+    });
+    return deferred.promise;
+  }
+
   var getPageInsights = function(page, token) {
     var deferred = $q.defer();
     FB.api('/'+page+'/insights?access_token='+token, function(response) {
@@ -263,7 +283,6 @@ angular.module("angular-facebook-insight",
 
   var getPostInsights = function(post, token) {
     var deferred = $q.defer();
-    console.log(post)
     FB.api('/'+post+'/insights?access_token='+token, function(response) {
       deferred.resolve(getInsightHashmap(response.data));
     });
@@ -423,7 +442,9 @@ angular.module("angular-facebook-insight",
     getInterestRateGauge: getInterestRateGauge,
     getViralityRateGauge: getViralityRateGauge,
     getNegativeRateGauge: getNegativeRateGauge,
-    getRatesSpider: getRatesSpider
+    getRatesSpider: getRatesSpider,
+    getPages: getPages,
+    getPostsByPage: getPostsByPage
   } 
 }])
 
@@ -510,6 +531,8 @@ angular.module("angular-facebook-insight",
     }
   };
 });
+
+
 angular.module('templates/fb-insight-bar.html', []).run(['$templateCache', function($templateCache) {
   'use strict';
 
