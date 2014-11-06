@@ -1,4 +1,4 @@
-/*! angular-facebook-insight - v0.6.26 - 2014-11-06
+/*! angular-facebook-insight - v0.6.27 - 2014-11-06
 * Copyright (c) 2014 ; Licensed  */
   /*! angular-facebook-insight - v0.6.1 - 2014-07-13
 * Copyright (c) 2014 ; Licensed  */
@@ -599,6 +599,17 @@ angular.module('templates/fb-insight-reach.html', []).run(['$templateCache', fun
     "<div>\n" +
     "\t<div class=\"value\"><ng-odometer value=\"data\"></ng-odometer></div>\n" +
     "\t<div class=\"title\"><i class=\"fa fa-dot-circle-o\"></i><span lng=\"text:{{label}}\"></span></div>\n" +
+    "</div>"
+  );
+
+}]);
+
+angular.module('templates/fb-insight-spider.html', []).run(['$templateCache', function($templateCache) {
+  'use strict';
+
+  $templateCache.put('templates/fb-insight-spider.html',
+    "<div>\n" +
+    "  <highchart id=\"pie\" config=\"data\" class=\"pie\"></highchart>\n" +
     "</div>"
   );
 

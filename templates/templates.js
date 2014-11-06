@@ -69,6 +69,17 @@ angular.module('templates/fb-insight-reach.html', []).run(['$templateCache', fun
 
 }]);
 
+angular.module('templates/fb-insight-spider.html', []).run(['$templateCache', function($templateCache) {
+  'use strict';
+
+  $templateCache.put('templates/fb-insight-spider.html',
+    "<div>\n" +
+    "  <highchart id=\"pie\" config=\"data\" class=\"pie\"></highchart>\n" +
+    "</div>"
+  );
+
+}]);
+
 angular.module('templates/fb-post-details.html', []).run(['$templateCache', function($templateCache) {
   'use strict';
 
