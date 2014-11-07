@@ -1,6 +1,19 @@
-/*! angular-facebook-insight - v0.6.30 - 2014-11-06
+/*! angular-facebook-insight - v0.6.33 - 2014-11-07
 * Copyright (c) 2014 ; Licensed  */
   /*! angular-facebook-insight - v0.6.1 - 2014-07-13
+* Copyright (c) 2014 ; Licensed  */
+'use strict';
+
+angular.module("angular-facebook-insight-tpls",
+  ["templates/fb-insight-geomap.html"
+  ,"templates/fb-insight-map.html"
+  ,"templates/fb-insight-pie.html"
+  ,"templates/fb-insight-bar.html"
+  ,"templates/fb-insight-gauge.html"
+  ,"templates/fb-insight-reach.html"
+  ,"templates/fb-insight-spider.html"
+  ,"templates/fb-post-details.html"]);
+/*! angular-facebook-insight - v0.6.4 - 2014-08-07
 * Copyright (c) 2014 ; Licensed  */
 'use strict';
 
@@ -56,70 +69,70 @@ angular.module("angular-facebook-insight",
     getGauge: function(value, title) {
       return {
         options: {
-            chart: {
-                type: 'solidgauge'
-            },
-            pane: {
-                center: ['50%', '60%'],
-                startAngle: -90,
-                endAngle: 90,
-                background: {
-                    backgroundColor:'#fff',
-                    innerRadius: '90%',
-                    outerRadius: '100%',
-                    shape: 'arc'
-                }
-            },
-            solidgauge: {
-                dataLabels: {
-                    y: -30,
-                    borderWidth: 0,
-                    useHTML: true
-                }
-            },
-            plotOptions: {
-                solidgauge: {
-                    innerRadius: '90%',
-                    dataLabels: {
-                        y: -45,
-                        borderWidth: 0,
-                        useHTML: true
-                    }
-                }
+          chart: {
+            type: 'solidgauge'
+          },
+          pane: {
+            center: ['50%', '60%'],
+            startAngle: -90,
+            endAngle: 90,
+            background: {
+              backgroundColor:'#fff',
+              innerRadius: '90%',
+              outerRadius: '100%',
+              shape: 'arc'
             }
+          },
+          solidgauge: {
+            dataLabels: {
+              y: -30,
+              borderWidth: 0,
+              useHTML: true
+            }
+          },
+          plotOptions: {
+            solidgauge: {
+              innerRadius: '90%',
+              dataLabels: {
+                y: -45,
+                borderWidth: 0,
+                useHTML: true
+              }
+            }
+          }
         },
         series: [{
-            data: [value],
-            dataLabels: {
-             format: '<div style="text-align:center"><span style="font-size:25px;color:#444">{y}</span><span style="font-size:12px;color:silver"> %</span></div>'
-            }
+          data: [value],
+          dataLabels: {
+           format: '<div style="text-align:center"><span style="font-size:25px;color:#444">{y}</span><span style="font-size:12px;color:silver"> %</span></div>'
+          }
         }],
         title: {
-            text: title,
-            y: 50
+          text: title,
+          y: 50
         },
         credits: {
           enabled: false
         },
         yAxis: {
-            currentMin: 0,
-            currentMax: 100,
-            title: {
-                y: 140
-            },      
-            stops: [
-                      [0.1, '#DF5353'], // red
-                  [0.5, '#DDDF0D'], // yellow
-                  [0.9, '#55BF3B'] // green
-            ],
-            lineWidth: 0,
-            minorTickInterval: null,
-            tickPixelInterval: 400,
-            tickWidth: 0,
-            startOnTick:true,
-            labels: {
-                y: 15
-            }   
+          currentMin: 0,
+          currentMax: 100,
+          title: {
+            y: 140
+          },      
+          stops: [
+            [0.1, '#DF5353'], // red
+            [0.5, '#DDDF0D'], // yellow
+            [0.9, '#55BF3B'] // green
+          ],
+          lineWidth: 0,
+          minorTickInterval: null,
+          tickPixelInterval: 400,
+          tickWidth: 0,
+          startOnTick:true,
+          labels: {
+            y: 15
+          }   
         },
         loading: false
       };
@@ -138,43 +151,42 @@ angular.module("angular-facebook-insight",
         credits: {
           enabled: false
         },
-        size: '100%'
       }
     },
     getBar: function(data, categories, title, shareName) {
       return {
         chart: {
-            type: 'bar'
+          type: 'bar'
         },
         title: {
-            text: title
+          text: title
         },
         xAxis: {
-            categories: categories
+          categories: categories
         },
         yAxis: {
-            min: 0
+          min: 0
         },
         plotOptions: {
-            bar: {
-                dataLabels: {
-                    enabled: true
-                }
+          bar: {
+            dataLabels: {
+                enabled: true
             }
+          }
         },
         legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'top',
-            x: -40,
-            y: 100,
-            floating: true,
-            borderWidth: 1,
-            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-            shadow: true
+          layout: 'vertical',
+          align: 'right',
+          verticalAlign: 'top',
+          x: -40,
+          y: 100,
+          floating: true,
+          borderWidth: 1,
+          backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+          shadow: true
         },
         credits: {
-            enabled: false
+          enabled: false
         },
         series: [{
           name: shareName,
@@ -225,7 +237,9 @@ angular.module("angular-facebook-insight",
             y: 70,
             layout: 'vertical'
         },
-        
+        credits: {
+          enabled: false
+        },
         series: [{
             name: shareName,
             data: data,
@@ -532,8 +546,6 @@ angular.module("angular-facebook-insight",
     }
   };
 });
-
-
 angular.module('templates/fb-insight-bar.html', []).run(['$templateCache', function($templateCache) {
   'use strict';
 
