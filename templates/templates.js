@@ -107,8 +107,7 @@ angular.module('templates/fb-post-details.html', []).run(['$templateCache', func
     "\t\t\t<div class=\"content\">\n" +
     "\t\t\t\t<div class=\"author\">{{comment.from.name}}</div>\n" +
     "\t\t\t\t<div class=\"message\">{{comment.message}}</div>\n" +
-    "\t\t\t\t<div class=\"created\"><span am-time-ago=\"comment.created_time\"></div>\n" +
-    "\t\t\t\t<div class=\"likes\">{{comment.likes}}</div>\n" +
+    "\t\t\t\t<div class=\"created\"><span am-time-ago=\"comment.created_time\"> <i class=\\\"fa fa-like\\\"></i>{{comment.likes}}</div></div>\n" +
     "\t\t\t\t<div class=\"actions\"></div>\n" +
     "\t\t\t</div>\n" +
     "\t\t</div></div>\n" +
