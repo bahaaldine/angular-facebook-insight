@@ -6,7 +6,6 @@ div.ng-fb-post-details {
 	padding: 10px;
 	margin: 0px 0px 10px 0px;
 	border-radius: 2px;
-	min-height: 537px;
 }
 
 div.ng-fb-post-details > div > div.post-header {
@@ -56,6 +55,10 @@ div.ng-fb-post-details > div > div.post-description {
 	background: rgb(246, 247, 249);
 }
 
+div.ng-fb-post-details > div > div.post-description > div > div.post-picture {
+	
+}
+
 div.ng-fb-post-details > div > div.post-description > div > div.post-picture > img {
 	width: 100%;
 }
@@ -74,12 +77,13 @@ div.ng-fb-post-details > div > div.post-description > div > div.text > div.post-
 }
 
 div.post-insight-metric {
-  background: white;
-  margin: 0px 0px 10px 0px;
+    background: white;
+    margin: 0px 0px 10px 0px;
 }
 
 div.post-insight-metric > div > div.template {
   text-align: center;
+  border: solid 1px #e0e0e0;
 }
 
 div.post-insight-metric > div > div.template > div > div.title {
