@@ -50,7 +50,7 @@ div.ng-fb-post-details > div > div.post-message {
 }
 
 div.ng-fb-post-details > div > div.post-description {
-	width: 484px;
+	width: 98%;
 	margin: 20px auto 0px auto;
 	border: solid 1px rgb(211, 218, 232);
 	background: rgb(246, 247, 249);
@@ -74,7 +74,7 @@ div.ng-fb-post-details > div > div.post-description > div > div.text > div.post-
 }
 
 div.ng-fb-post-details > div > div.post-comments { 
-	width: 484px;
+	width: 98%;
 	margin: 0 auto;
 	max-height: 200px;
 	overflow: scroll;
