@@ -1,4 +1,4 @@
-/*! angular-facebook-insight - v0.6.33 - 2014-11-07
+/*! angular-facebook-insight - v0.6.34 - 2014-11-07
 * Copyright (c) 2014 ; Licensed  */
   /*! angular-facebook-insight - v0.6.1 - 2014-07-13
 * Copyright (c) 2014 ; Licensed  */
@@ -153,7 +153,7 @@ angular.module("angular-facebook-insight",
         },
       }
     },
-    getBar: function(data, categories, title, shareName) {
+    getBar: function(data, categories, color, title, shareName) {
       return {
         chart: {
           type: 'bar'
@@ -192,6 +192,7 @@ angular.module("angular-facebook-insight",
           name: shareName,
           type: 'column',
           data: data,
+          color: color,
           id: 'series-3'
         }]
       };
@@ -206,8 +207,7 @@ angular.module("angular-facebook-insight",
         },
 
         title: {
-            text: title,
-            x: -80
+            text: title
         },
         
         pane: {
@@ -318,7 +318,7 @@ angular.module("angular-facebook-insight",
       insights['post_storytellers_by_action_type'].values[0].value.comment,
       insights['post_storytellers_by_action_type'].values[0].value.share
     ];
-    return Parser.getBar(data, ['Likes', 'Comments', 'Share'], "Engagement par type", "Type d\'engagement");
+    return Parser.getBar(data, ['Likes', 'Comments', 'Share'], "#1ea3e8", "Engagement par type", "Type d\'engagement");
   }
 
   var getNegativeStories = function(insights) {
@@ -328,7 +328,7 @@ angular.module("angular-facebook-insight",
     var reportSpam = (angular.isDefined(negatives.report_spam) ? negatives.report_spam : 0);
 
     var data = [ hideClicks, hideAllClicks, reportSpam ];
-    return Parser.getBar(data, ['Hide clicks', 'Hide all clicks', 'Report Spam'], "Retours negatif par type", "Type de retour");
+    return Parser.getBar(data, ['Hide clicks', 'Hide all clicks', 'Report Spam'], "#fc6042","Retours negatif par type", "Type de retour");
   }
 
   var getImpressions = function(insights) {
