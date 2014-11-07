@@ -1,4 +1,4 @@
-/*! angular-facebook-insight - v0.6.36 - 2014-11-07
+/*! angular-facebook-insight - v0.6.37 - 2014-11-07
 * Copyright (c) 2014 ; Licensed  */
   /*! angular-facebook-insight - v0.6.1 - 2014-07-13
 * Copyright (c) 2014 ; Licensed  */
@@ -537,7 +537,8 @@ angular.module("angular-facebook-insight",
               caption: response.caption,
               message: response.message,
               page: response.from.id,
-              picture: postPicture
+              picture: postPicture,
+              comments: response.comments
             };
             scope.$apply();
           });
