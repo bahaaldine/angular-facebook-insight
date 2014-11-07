@@ -16,7 +16,7 @@
 		</div>
 	</div></div>
 	<div class="post-comments">
-		<div class="comment" ng-repeat="comment in post.comments"><div>
+		<div class="comment" ng-repeat="comment in post.comments.data"><div>
 			<div class="picture"><img ng-src="http://graph.facebook.com/{{comment.from.id}}/picture?type=square"></img></div>
 			<div class="content">
 				<div class="author">{{comment.from.name}}</div>

@@ -1,4 +1,4 @@
-/*! angular-facebook-insight - v0.6.35 - 2014-11-07
+/*! angular-facebook-insight - v0.6.36 - 2014-11-07
 * Copyright (c) 2014 ; Licensed  */
   /*! angular-facebook-insight - v0.6.1 - 2014-07-13
 * Copyright (c) 2014 ; Licensed  */
@@ -650,7 +650,7 @@ angular.module('templates/fb-post-details.html', []).run(['$templateCache', func
     "\t\t</div>\n" +
     "\t</div></div>\n" +
     "\t<div class=\"post-comments\">\n" +
-    "\t\t<div class=\"comment\" ng-repeat=\"comment in post.comments\"><div>\n" +
+    "\t\t<div class=\"comment\" ng-repeat=\"comment in post.comments.data\"><div>\n" +
     "\t\t\t<div class=\"picture\"><img ng-src=\"http://graph.facebook.com/{{comment.from.id}}/picture?type=square\"></img></div>\n" +
     "\t\t\t<div class=\"content\">\n" +
     "\t\t\t\t<div class=\"author\">{{comment.from.name}}</div>\n" +
