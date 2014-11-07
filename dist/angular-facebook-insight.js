@@ -1,4 +1,4 @@
-/*! angular-facebook-insight - v0.6.41 - 2014-11-07
+/*! angular-facebook-insight - v0.6.42 - 2014-11-07
 * Copyright (c) 2014 ; Licensed  */
   /*! angular-facebook-insight - v0.6.1 - 2014-07-13
 * Copyright (c) 2014 ; Licensed  */
@@ -657,7 +657,7 @@ angular.module('templates/fb-post-details.html', []).run(['$templateCache', func
     "\t\t\t\t<div class=\"author\">{{comment.from.name}}</div>\n" +
     "\t\t\t\t<div class=\"message\">{{comment.message}}</div>\n" +
     "\t\t\t\t<div class=\"created\">\n" +
-    "\t\t\t\t\t<span am-time-ago=\"comment.created_time\"></span> <i class=\"fa fa-like\"></i>{{comment.like_count}}</div>\n" +
+    "\t\t\t\t\t<span am-time-ago=\"comment.created_time\"></span> <i class=\"fa fa-thumbs-o-up\"></i><span class=\"likes\">{{comment.like_count}}<span></div>\n" +
     "\t\t\t\t<div class=\"actions\"></div>\n" +
     "\t\t\t</div>\n" +
     "\t\t</div></div>\n" +
