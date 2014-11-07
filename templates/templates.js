@@ -101,6 +101,18 @@ angular.module('templates/fb-post-details.html', []).run(['$templateCache', func
     "\t\t\t<div class=\"post-cta\"></div>\n" +
     "\t\t</div>\n" +
     "\t</div></div>\n" +
+    "\t<div class=\"post-comments\">\n" +
+    "\t\t<div class=\"comment\" ng-repeat=\"comment in post.comments\"><div>\n" +
+    "\t\t\t<div class=\"picture\"><img ng-src=\"http://graph.facebook.com/{{comment.from.id}}/picture?type=square\"></img></div>\n" +
+    "\t\t\t<div class=\"content\">\n" +
+    "\t\t\t\t<div class=\"author\">{{comment.from.name}}</div>\n" +
+    "\t\t\t\t<div class=\"message\">{{comment.message}}</div>\n" +
+    "\t\t\t\t<div class=\"created\"><span am-time-ago=\"comment.created_time\"></div>\n" +
+    "\t\t\t\t<div class=\"likes\">{{comment.likes}}</div>\n" +
+    "\t\t\t\t<div class=\"actions\"></div>\n" +
+    "\t\t\t</div>\n" +
+    "\t\t</div></div>\n" +
+    "\t</div>\n" +
     "</div></div>"
   );
 
