@@ -78,6 +78,8 @@ div.ng-fb-post-details > div > div.post-comments {
 	margin: 0 auto;
 	max-height: 200px;
 	overflow: scroll;
+	border: solid 1px rgb(211, 214, 219);
+	border-top: none;
 }
 
 div.ng-fb-post-details > div > div.post-comments > div.comment { 
@@ -107,6 +109,11 @@ div.ng-fb-post-details > div > div.post-comments > div.comment > div > div.conte
 	width: 70%;
 }
 
+div.ng-fb-post-details > div > div.post-comments > div.comment > div > div.content > div {
+    margin: 3px 0px;
+
+}
+
 div.ng-fb-post-details > div > div.post-comments > div.comment > div > div.content > div.author { 
 	color: rgb(59, 89, 152);
 	font-weight: bold;
@@ -120,13 +127,17 @@ div.ng-fb-post-details > div > div.post-comments > div.comment > div > div.conte
 	color: rgb(145, 151, 163);
 }
 
-div.ng-fb-post-details > div > div.post-comments > div.comment > div > div.content > div.likes { 
-
+div.ng-fb-post-details > div > div.post-comments > div.comment > div > div.content > div.created > span.likes,
+div.ng-fb-post-details > div > div.post-comments > div.comment > div > div.content > div.created > i { 
+	color: rgb(59, 89, 152);
+	margin: 0px 2px;
+	vertical-align: top;
 }
 
 div.post-insight-metric {
   background: white;
   margin: 0px 0px 10px 0px;
+  border: solid 1px rgb(211, 214, 219);
 }
 
 div.post-insight-metric > div > div.template {
