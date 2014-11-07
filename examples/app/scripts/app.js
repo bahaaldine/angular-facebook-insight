@@ -1,4 +1,4 @@
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      w'use strict';
+'use strict';
 
 /**
  * @ngdoc overview
@@ -15,7 +15,8 @@ angular
     'ngFastI18n',
     'ngFontChart',
     'angular-facebook-insight',
-    'highcharts-ng'
+    'highcharts-ng',
+    'angularMoment'
   ])
   .config(function ($routeProvider) {
     $routeProvider

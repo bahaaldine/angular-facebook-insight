@@ -30,6 +30,7 @@
     "angularjs-nvd3-directives": "~0.0.7",
     "font-awesome": "4.0.x",
     "highcharts-ng": "~0.0.7",
-    "highcharts": "~4.0.4"
+    "highcharts": "~4.0.4",
+    "angular-moment": "~0.8.2"
   }
 }

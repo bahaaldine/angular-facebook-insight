@@ -6,6 +6,7 @@ div.ng-fb-post-details {
 	padding: 10px;
 	margin: 0px 0px 10px 0px;
 	border-radius: 2px;
+	min-height: 537px;
 }
 
 div.ng-fb-post-details > div > div.post-header {
@@ -55,10 +56,6 @@ div.ng-fb-post-details > div > div.post-description {
 	background: rgb(246, 247, 249);
 }
 
-div.ng-fb-post-details > div > div.post-description > div > div.post-picture {
-	
-}
-
 div.ng-fb-post-details > div > div.post-description > div > div.post-picture > img {
 	width: 100%;
 }
@@ -76,14 +73,64 @@ div.ng-fb-post-details > div > div.post-description > div > div.text > div.post-
 	color: rgb(145, 151, 163);
 }
 
+div.ng-fb-post-details > div > div.post-comments { 
+	width: 484px;
+	margin: 0 auto;
+	max-height: 200px;
+	overflow: scroll;
+}
+
+div.ng-fb-post-details > div > div.post-comments > div.comment { 
+	background: #edeff4;
+	color: rgb(20, 24, 35);
+	padding: 10px 5px;
+	border-bottom: solid 1px white;
+}
+
+div.ng-fb-post-details > div > div.post-comments > div.comment > div { 
+}
+
+div.ng-fb-post-details > div > div.post-comments > div.comment > div > div {
+	display: inline-block;
+	vertical-align: top;
+}
+
+div.ng-fb-post-details > div > div.post-comments > div.comment > div > div.picture { 
+	width: 60px;
+}
+
+div.ng-fb-post-details > div > div.post-comments > div.comment > div > div.picture > img { 
+	width: 80%;
+}
+
+div.ng-fb-post-details > div > div.post-comments > div.comment > div > div.content {
+	width: 70%;
+}
+
+div.ng-fb-post-details > div > div.post-comments > div.comment > div > div.content > div.author { 
+	color: rgb(59, 89, 152);
+	font-weight: bold;
+}	
+
+div.ng-fb-post-details > div > div.post-comments > div.comment > div > div.content > div.message { 
+
+}
+
+div.ng-fb-post-details > div > div.post-comments > div.comment > div > div.content > div.created { 
+	color: rgb(145, 151, 163);
+}
+
+div.ng-fb-post-details > div > div.post-comments > div.comment > div > div.content > div.likes { 
+
+}
+
 div.post-insight-metric {
-    background: white;
-    margin: 0px 0px 10px 0px;
+  background: white;
+  margin: 0px 0px 10px 0px;
 }
 
 div.post-insight-metric > div > div.template {
   text-align: center;
-  border: solid 1px #e0e0e0;
 }
 
 div.post-insight-metric > div > div.template > div > div.title {
